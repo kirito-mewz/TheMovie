@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BadgeCollectionViewCell" customModule="TheMovie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-1x-sNZ">
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoB-AK-bq2">
+                                <rect key="frame" x="10" y="15.333333333333334" width="330" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="Color_Bluish_Gray"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HoB-AK-bq2" secondAttribute="trailing" constant="10" id="6f6-cp-Rm1"/>
+                            <constraint firstItem="HoB-AK-bq2" firstAttribute="centerY" secondItem="5xY-1x-sNZ" secondAttribute="centerY" id="H8G-iv-mLe"/>
+                            <constraint firstItem="HoB-AK-bq2" firstAttribute="leading" secondItem="5xY-1x-sNZ" secondAttribute="leading" constant="10" id="Srk-UA-ULv"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="5xY-1x-sNZ" secondAttribute="bottom" id="6vC-MQ-chl"/>
+                <constraint firstItem="5xY-1x-sNZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Bjw-Be-esq"/>
+                <constraint firstItem="5xY-1x-sNZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="G2D-M1-WET"/>
+                <constraint firstAttribute="trailing" secondItem="5xY-1x-sNZ" secondAttribute="trailing" id="PIp-be-b0m"/>
+            </constraints>
+            <connections>
+                <outlet property="containerView" destination="5xY-1x-sNZ" id="rdL-mX-oC8"/>
+                <outlet property="genreLabel" destination="HoB-AK-bq2" id="5pE-1r-Wgq"/>
+            </connections>
+            <point key="canvasLocation" x="85" y="106"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="Color_Bluish_Gray">
+            <color red="0.34400001168251038" green="0.375" blue="0.43799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

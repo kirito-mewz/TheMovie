@@ -38,6 +38,11 @@
 		667FAA2A2EBF9DDC009AB664 /* ActorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA272EBF9DDC009AB664 /* ActorTableViewCell.swift */; };
 		667FAA2D2EBFA112009AB664 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA2C2EBFA112009AB664 /* UICollectionView+Ext.swift */; };
 		667FAA2F2EBFA184009AB664 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA2E2EBFA184009AB664 /* UILabel+Ext.swift */; };
+		667FAA312EBFC0FD009AB664 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA302EBFC0FD009AB664 /* MovieDetailViewController.swift */; };
+		667FAA342EBFD58D009AB664 /* BadgeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667FAA332EBFD58D009AB664 /* BadgeCollectionViewCell.xib */; };
+		667FAA352EBFD58D009AB664 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA322EBFD58D009AB664 /* BadgeCollectionViewCell.swift */; };
+		667FAA382EBFD634009AB664 /* CompanyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667FAA372EBFD634009AB664 /* CompanyCollectionViewCell.xib */; };
+		667FAA392EBFD634009AB664 /* CompanyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA362EBFD634009AB664 /* CompanyCollectionViewCell.swift */; };
 		CEF63AB374BD5C2C2F7F6E6E /* Pods_TheMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBCEA6A89FB43D3EF0728C8 /* Pods_TheMovie.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +84,11 @@
 		667FAA282EBF9DDC009AB664 /* ActorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActorTableViewCell.xib; sourceTree = "<group>"; };
 		667FAA2C2EBFA112009AB664 /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
 		667FAA2E2EBFA184009AB664 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		667FAA302EBFC0FD009AB664 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		667FAA322EBFD58D009AB664 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
+		667FAA332EBFD58D009AB664 /* BadgeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCollectionViewCell.xib; sourceTree = "<group>"; };
+		667FAA362EBFD634009AB664 /* CompanyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCollectionViewCell.swift; sourceTree = "<group>"; };
+		667FAA372EBFD634009AB664 /* CompanyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +187,8 @@
 				667FAA082EBF897A009AB664 /* GenreCollectionViewCell.xib */,
 				667FAA0C2EBF8B39009AB664 /* ShowcaseCollectionViewCell.xib */,
 				667FAA102EBF8E1E009AB664 /* ActorCollectionViewCell.xib */,
+				667FAA332EBFD58D009AB664 /* BadgeCollectionViewCell.xib */,
+				667FAA372EBFD634009AB664 /* CompanyCollectionViewCell.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -189,6 +201,8 @@
 				667FAA072EBF897A009AB664 /* GenreCollectionViewCell.swift */,
 				667FAA0B2EBF8B39009AB664 /* ShowcaseCollectionViewCell.swift */,
 				667FAA0F2EBF8E1E009AB664 /* ActorCollectionViewCell.swift */,
+				667FAA322EBFD58D009AB664 /* BadgeCollectionViewCell.swift */,
+				667FAA362EBFD634009AB664 /* CompanyCollectionViewCell.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -241,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				667FA9E62EBF800B009AB664 /* MainViewController.swift */,
+				667FAA302EBFC0FD009AB664 /* MovieDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -348,9 +363,11 @@
 				667FAA1D2EBF980D009AB664 /* ShowtimeTableViewCell.xib in Resources */,
 				667FAA112EBF8E1E009AB664 /* ActorCollectionViewCell.xib in Resources */,
 				667FAA152EBF9497009AB664 /* SliderTableViewCell.xib in Resources */,
+				667FAA342EBFD58D009AB664 /* BadgeCollectionViewCell.xib in Resources */,
 				667FAA252EBF9BE0009AB664 /* ShowcaseTableViewCell.xib in Resources */,
 				667FAA292EBF9DDC009AB664 /* ActorTableViewCell.xib in Resources */,
 				667FA9EE2EBF800B009AB664 /* Main.storyboard in Resources */,
+				667FAA382EBFD634009AB664 /* CompanyCollectionViewCell.xib in Resources */,
 				667FAA092EBF897A009AB664 /* GenreCollectionViewCell.xib in Resources */,
 				667FA9FF2EBF8556009AB664 /* SliderCollectionViewCell.xib in Resources */,
 				667FAA192EBF9694009AB664 /* PopularTableViewCell.xib in Resources */,
@@ -400,11 +417,14 @@
 				667FAA042EBF8658009AB664 /* MovieCollectionViewCell.swift in Sources */,
 				667FA9EA2EBF800B009AB664 /* MainViewController.swift in Sources */,
 				667FAA062EBF8725009AB664 /* RatingControl.swift in Sources */,
+				667FAA352EBFD58D009AB664 /* BadgeCollectionViewCell.swift in Sources */,
+				667FAA392EBFD634009AB664 /* CompanyCollectionViewCell.swift in Sources */,
 				667FAA262EBF9BE0009AB664 /* ShowcaseTableViewCell.swift in Sources */,
 				667FAA0E2EBF8B39009AB664 /* ShowcaseCollectionViewCell.swift in Sources */,
 				667FAA2F2EBFA184009AB664 /* UILabel+Ext.swift in Sources */,
 				667FAA222EBF9A6C009AB664 /* MovieWithGenreTableViewCell.swift in Sources */,
 				667FAA2A2EBF9DDC009AB664 /* ActorTableViewCell.swift in Sources */,
+				667FAA312EBFC0FD009AB664 /* MovieDetailViewController.swift in Sources */,
 				667FAA002EBF8556009AB664 /* SliderCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
