@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SliderCollectionViewCell" customModule="TheMovie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slider" translatesAutoresizingMaskIntoConstraints="NO" id="anp-88-Rty">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-cf-H1a">
+                        <rect key="frame" x="170" y="120.66666666666667" width="60" height="58.666666666666671"/>
+                        <color key="tintColor" name="Color_Yellow"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="Oxc-w1-LJn"/>
+                            <constraint firstAttribute="height" constant="60" id="Qje-T5-WNF"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iu0-H6-35L">
+                        <rect key="frame" x="20" y="252.33333333333334" width="360" height="27.666666666666657"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="anp-88-Rty" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3yr-Xc-hbq"/>
+                <constraint firstItem="fFb-cf-H1a" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="6Wl-Qo-x09"/>
+                <constraint firstItem="Iu0-H6-35L" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="7pR-WT-mDh"/>
+                <constraint firstItem="anp-88-Rty" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="DYm-Km-w76"/>
+                <constraint firstItem="fFb-cf-H1a" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Fyu-1J-XEO"/>
+                <constraint firstAttribute="trailing" secondItem="Iu0-H6-35L" secondAttribute="trailing" constant="20" id="MzX-qK-ycu"/>
+                <constraint firstAttribute="bottom" secondItem="anp-88-Rty" secondAttribute="bottom" id="eqW-8X-d4i"/>
+                <constraint firstAttribute="trailing" secondItem="anp-88-Rty" secondAttribute="trailing" id="qGh-LN-3tP"/>
+                <constraint firstAttribute="bottom" secondItem="Iu0-H6-35L" secondAttribute="bottom" constant="20" id="vqY-y1-sxg"/>
+            </constraints>
+            <connections>
+                <outlet property="movieImageView" destination="anp-88-Rty" id="gML-X9-43V"/>
+                <outlet property="movieTitleLabel" destination="Iu0-H6-35L" id="lF2-7b-A5U"/>
+                <outlet property="playImageView" destination="fFb-cf-H1a" id="lPP-cb-Zcf"/>
+            </connections>
+            <point key="canvasLocation" x="-285" y="124"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="play.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="slider" width="232" height="154.33332824707031"/>
+        <namedColor name="Color_Yellow">
+            <color red="0.9100000262260437" green="0.64300000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
