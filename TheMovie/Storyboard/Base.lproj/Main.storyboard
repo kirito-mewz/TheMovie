@@ -907,28 +907,6 @@
             </objects>
             <point key="canvasLocation" x="2932" y="470"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cju-RR-qIh">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zpp-QV-EKg" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R24-KW-BuP">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="Color_Primary"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" name="Color_Yellow"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="noo-FZ-m1R"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vhL-tb-zoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="136.64122137404578" y="136.61971830985917"/>
-        </scene>
         <!--List UI-->
         <scene sceneID="xac-I3-XxE">
             <objects>
@@ -985,6 +963,57 @@
             </objects>
             <point key="canvasLocation" x="135" y="803"/>
         </scene>
+        <!--Youtube Player UI-->
+        <scene sceneID="9SK-H2-Qnt">
+            <objects>
+                <viewController id="XmU-uf-It2" userLabel="Youtube Player UI" customClass="YoutubePlayerViewController" customModule="TheMovie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5FF-cm-dL2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9v-fG-i8f">
+                                <rect key="frame" x="0.0" y="301" width="393" height="250"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="gev-EO-tlz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nOp-zi-5IQ"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="v9v-fG-i8f" firstAttribute="leading" secondItem="nOp-zi-5IQ" secondAttribute="leading" id="MZh-wz-PoQ"/>
+                            <constraint firstItem="nOp-zi-5IQ" firstAttribute="trailing" secondItem="v9v-fG-i8f" secondAttribute="trailing" id="gZa-zN-2tB"/>
+                            <constraint firstItem="v9v-fG-i8f" firstAttribute="centerY" secondItem="5FF-cm-dL2" secondAttribute="centerY" id="kCy-Qa-4Z3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oPc-cF-hIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063" y="803"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cju-RR-qIh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zpp-QV-EKg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R24-KW-BuP">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="Color_Primary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="Color_Yellow"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="noo-FZ-m1R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vhL-tb-zoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.64122137404578" y="136.61971830985917"/>
+        </scene>
     </scenes>
     <resources>
         <image name="actor" width="200" height="112.33333587646484"/>
@@ -1012,6 +1041,9 @@
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
