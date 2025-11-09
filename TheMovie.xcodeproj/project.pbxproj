@@ -43,6 +43,7 @@
 		667FAA352EBFD58D009AB664 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA322EBFD58D009AB664 /* BadgeCollectionViewCell.swift */; };
 		667FAA382EBFD634009AB664 /* CompanyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667FAA372EBFD634009AB664 /* CompanyCollectionViewCell.xib */; };
 		667FAA392EBFD634009AB664 /* CompanyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA362EBFD634009AB664 /* CompanyCollectionViewCell.swift */; };
+		667FAA3B2EC06BB5009AB664 /* ActorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667FAA3A2EC06BB5009AB664 /* ActorDetailViewController.swift */; };
 		CEF63AB374BD5C2C2F7F6E6E /* Pods_TheMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBCEA6A89FB43D3EF0728C8 /* Pods_TheMovie.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		667FAA332EBFD58D009AB664 /* BadgeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BadgeCollectionViewCell.xib; sourceTree = "<group>"; };
 		667FAA362EBFD634009AB664 /* CompanyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCollectionViewCell.swift; sourceTree = "<group>"; };
 		667FAA372EBFD634009AB664 /* CompanyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCollectionViewCell.xib; sourceTree = "<group>"; };
+		667FAA3A2EC06BB5009AB664 /* ActorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 			children = (
 				667FA9E62EBF800B009AB664 /* MainViewController.swift */,
 				667FAA302EBFC0FD009AB664 /* MovieDetailViewController.swift */,
+				667FAA3A2EC06BB5009AB664 /* ActorDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				667FAA352EBFD58D009AB664 /* BadgeCollectionViewCell.swift in Sources */,
 				667FAA392EBFD634009AB664 /* CompanyCollectionViewCell.swift in Sources */,
 				667FAA262EBF9BE0009AB664 /* ShowcaseTableViewCell.swift in Sources */,
+				667FAA3B2EC06BB5009AB664 /* ActorDetailViewController.swift in Sources */,
 				667FAA0E2EBF8B39009AB664 /* ShowcaseCollectionViewCell.swift in Sources */,
 				667FAA2F2EBFA184009AB664 /* UILabel+Ext.swift in Sources */,
 				667FAA222EBF9A6C009AB664 /* MovieWithGenreTableViewCell.swift in Sources */,
