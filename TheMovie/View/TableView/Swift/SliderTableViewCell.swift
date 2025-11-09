@@ -12,6 +12,8 @@ class SliderTableViewCell: UITableViewCell {
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
     
+    var delegate: MovieItemDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -49,6 +51,8 @@ extension SliderTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
         pageControl.currentPage = Int(scrollView.contentOffset.x / contentView.frame.width)
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.onMovieCellTapped()
+    }
     
 }

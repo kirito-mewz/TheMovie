@@ -13,9 +13,27 @@ class GenreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var overlayView: UIView!
     
+    var onGenreTap: ((Int) -> Void) = {_ in}
+    
+    var data: GenreVO? = nil {
+        didSet {
+            if let data = data {
+                genreLabel.text = data.genreName
+                overlayView.isHidden = !data.isSelected
+                genreLabel.textColor = data.isSelected ? .white : .init(red: 63/255, green: 69/255, blue: 96/255, alpha: 1)
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        containerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(_didCellTap)))
     }
+    
+    @objc private func _didCellTap() {
+        onGenreTap(data?.id ?? 0)
+    }
+    
 
 }

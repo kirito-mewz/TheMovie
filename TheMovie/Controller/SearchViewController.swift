@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, Storyboarded {
     
     // MARK: - IBOutlets
     @IBOutlet weak var movieSearchBar: UISearchBar!
@@ -69,4 +69,13 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.onMovieCellTapped()
+    }
+    
 }
+
+extension SearchViewController: MovieItemDelegate {
+    
+}
+

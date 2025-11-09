@@ -18,29 +18,29 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="actor" translatesAutoresizingMaskIntoConstraints="NO" id="kEB-zn-Xkk">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kEB-zn-Xkk">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                     </imageView>
                     <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zwf-eE-5sT">
                         <rect key="frame" x="170" y="12" width="20" height="17"/>
                         <color key="tintColor" name="Color_Yellow"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="SKu-hz-jvS"/>
+                            <constraint firstAttribute="width" constant="20" id="prB-ON-bju"/>
+                        </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fQ0-MI-bag">
                         <rect key="frame" x="170" y="12" width="20" height="17"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="FCF-HH-uS1"/>
-                            <constraint firstAttribute="width" constant="20" id="wfx-jg-sLL"/>
-                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actor Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCJ-vl-YiH">
-                        <rect key="frame" x="10" y="248" width="180" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCJ-vl-YiH">
+                        <rect key="frame" x="10" y="265" width="180" height="0.0"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Role " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2h-n8-9Sj">
-                        <rect key="frame" x="35" y="273" width="29.666666666666671" height="14.333333333333314"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2h-n8-9Sj">
+                        <rect key="frame" x="35" y="280" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -60,6 +60,7 @@
                 <constraint firstAttribute="bottom" secondItem="ajO-GU-USg" secondAttribute="bottom" constant="10" id="6mp-vg-NMi"/>
                 <constraint firstAttribute="trailing" secondItem="fQ0-MI-bag" secondAttribute="trailing" constant="10" id="6uo-4Q-V81"/>
                 <constraint firstItem="Q2h-n8-9Sj" firstAttribute="leading" secondItem="ajO-GU-USg" secondAttribute="trailing" constant="5" id="9p8-HM-VUU"/>
+                <constraint firstItem="zwf-eE-5sT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="GJT-VK-PN6"/>
                 <constraint firstItem="zwf-eE-5sT" firstAttribute="top" secondItem="fQ0-MI-bag" secondAttribute="top" id="H8g-ma-VvG"/>
                 <constraint firstAttribute="trailing" secondItem="kEB-zn-Xkk" secondAttribute="trailing" id="SHY-Fr-AFJ"/>
                 <constraint firstItem="ajO-GU-USg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="STL-K8-AJ4"/>
@@ -67,6 +68,7 @@
                 <constraint firstItem="ajO-GU-USg" firstAttribute="top" secondItem="jCJ-vl-YiH" secondAttribute="bottom" constant="5" id="WPm-Yf-gkE"/>
                 <constraint firstItem="kEB-zn-Xkk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WQw-jx-i2g"/>
                 <constraint firstItem="zwf-eE-5sT" firstAttribute="trailing" secondItem="fQ0-MI-bag" secondAttribute="trailing" id="XXV-ff-5qY"/>
+                <constraint firstAttribute="trailing" secondItem="zwf-eE-5sT" secondAttribute="trailing" constant="10" id="aTw-5w-Moc"/>
                 <constraint firstItem="zwf-eE-5sT" firstAttribute="bottom" secondItem="fQ0-MI-bag" secondAttribute="bottom" id="bOy-SA-d33"/>
                 <constraint firstItem="Q2h-n8-9Sj" firstAttribute="centerY" secondItem="ajO-GU-USg" secondAttribute="centerY" id="gHk-i8-vsh"/>
                 <constraint firstItem="fQ0-MI-bag" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="hdk-x3-pow"/>
@@ -86,7 +88,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="actor" width="200" height="112.33333587646484"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>

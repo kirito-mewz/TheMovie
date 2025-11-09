@@ -12,6 +12,9 @@ class ActorTableViewCell: UITableViewCell {
     @IBOutlet weak var moreActorLabel: UILabel!
     @IBOutlet weak var actorCollectionView: UICollectionView!
     
+    var onMoreActorTapped: (() -> Void)?
+    var delegate: ActorItemDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,7 +32,7 @@ class ActorTableViewCell: UITableViewCell {
     }
     
     @objc private func onMoreActorTapped(_ sender: Any) {
-        
+        onMoreActorTapped?()
     }
     
 }
@@ -42,6 +45,7 @@ extension ActorTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(ofType: ActorCollectionViewCell.self, for: indexPath, shouldRegister: true)
+        cell.delegate = self.delegate
         return cell
     }
     
@@ -49,5 +53,8 @@ extension ActorTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
         return .init(width: collectionView.frame.width / 2.5, height: collectionView.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.onActorCellTapped()
+    }
     
 }

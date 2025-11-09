@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, Storyboarded {
     
     enum ListType { case movie, cast }
     
@@ -52,7 +52,7 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if type == .movie {
-            return .init(width: (collectionView.frame.width / 3) + 30, height: (collectionView.frame.height / 3) + 20)
+            return .init(width: collectionView.frame.width - 40, height: collectionView.frame.height / 4)
         } else {
             return .init(width: (collectionView.frame.width / 3) + 30, height: collectionView.frame.height / 3)
         }
@@ -73,4 +73,16 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if type == .movie {
+            self.onMovieCellTapped()
+        } else {
+            self.onActorCellTapped()
+        }
+    }
+    
+}
+
+extension ListViewController: MovieItemDelegate, ActorItemDelegate {
+    func onFavouriteTapped(isFavourite: Bool) { }
 }

@@ -12,6 +12,14 @@ class BadgeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var genreLabel: UILabel!
     
+    var data: GenreVO? {
+        didSet {
+            if let data = data {
+                genreLabel.text = data.genreName
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

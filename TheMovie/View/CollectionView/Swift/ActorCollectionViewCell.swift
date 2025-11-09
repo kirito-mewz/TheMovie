@@ -14,6 +14,8 @@ class ActorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var heartImageView: UIImageView!
     @IBOutlet weak var actorNameLabel: UILabel!
     @IBOutlet weak var roleLabel: UILabel!
+    
+    var delegate: ActorItemDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,17 +25,19 @@ class ActorCollectionViewCell: UICollectionViewCell {
     
     fileprivate func initializeGesture() {
         heartImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapFavourite)))
-        heartFilledImageView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(onTapUnFavourite)))
+        heartFilledImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTapUnfavourite)))
     }
     
     @objc fileprivate func onTapFavourite() {
         heartImageView.isHidden = true
         heartFilledImageView.isHidden = false
+        delegate?.onFavouriteTapped(isFavourite: true)
     }
     
-    @objc fileprivate func onTapUnFavourite() {
+    @objc fileprivate func onTapUnfavourite() {
         heartImageView.isHidden = false
         heartFilledImageView.isHidden = true
+        delegate?.onFavouriteTapped(isFavourite: false)
     }
 
 }

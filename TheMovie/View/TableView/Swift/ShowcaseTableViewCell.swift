@@ -12,6 +12,9 @@ class ShowcaseTableViewCell: UITableViewCell {
     @IBOutlet weak var moreShowcaseLabel: UILabel!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     
+    var onMoreShowcaseTapped: (() -> Void)?
+    var delegate: MovieItemDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -29,7 +32,7 @@ class ShowcaseTableViewCell: UITableViewCell {
     }
     
     @objc private func onMoreShowcaseTapped(_ sender: Any) {
-        
+        onMoreShowcaseTapped?()
     }
     
 }
@@ -52,6 +55,10 @@ extension ShowcaseTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let horizontalScrollView = scrollView.subviews[(scrollView.subviews.count - 1)].subviews[0]
         horizontalScrollView.backgroundColor = UIColor(named: "Color_Yellow")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.onMovieCellTapped()
     }
     
 }

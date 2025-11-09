@@ -17,23 +17,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="250" height="400"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="popular" translatesAutoresizingMaskIntoConstraints="NO" id="9Ug-KQ-Cbv">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="345"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="9Ug-KQ-Cbv">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="377"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6K-jA-gUL">
-                        <rect key="frame" x="0.0" y="355" width="250" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6K-jA-gUL">
+                        <rect key="frame" x="0.0" y="387" width="250" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTS-0n-tTq">
-                        <rect key="frame" x="0.0" y="380" width="36" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTS-0n-tTq">
+                        <rect key="frame" x="0.0" y="400" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4v-C7-hXR" customClass="RatingControl" customModule="TheMovie" customModuleProvider="target">
-                        <rect key="frame" x="41" y="382" width="80" height="16"/>
+                        <rect key="frame" x="5" y="392" width="80" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="QwG-ZC-XZ0"/>
                             <constraint firstAttribute="width" constant="80" id="eyd-7R-HyN"/>
@@ -46,7 +46,7 @@
                                 <size key="value" width="16" height="16"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                                <integer key="value" value="4"/>
+                                <integer key="value" value="0"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </stackView>
@@ -75,7 +75,4 @@
             <point key="canvasLocation" x="138.93129770992365" y="123.94366197183099"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="popular" width="288" height="426.66665649414062"/>
-    </resources>
 </document>

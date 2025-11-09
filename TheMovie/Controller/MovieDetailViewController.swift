@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController, Storyboarded {
     
     // MARK: - IBOutlets
     @IBOutlet weak var movieImageView: UIImageView!
@@ -36,6 +36,14 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var companiesCollectionView: UICollectionView!
     @IBOutlet weak var movieCollectionView: UICollectionView!
     
+    fileprivate var genreList: [GenreVO] = [
+        .init(id: 1, genreName: "ACTION", isSelected: true),
+        .init(id: 2, genreName: "ADVENTURE", isSelected: false),
+        .init(id: 3, genreName: "CRIMINAL", isSelected: false),
+        .init(id: 4, genreName: "DRAMMA", isSelected: false),
+        .init(id: 5, genreName: "COMEDY", isSelected: false)
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,14 +68,20 @@ class MovieDetailViewController: UIViewController {
         rateMovieButton.layer.borderWidth = 1
         rateMovieButton.layer.cornerRadius = rateMovieButton.frame.height / 2
     }
-
+    
+    
+    @IBAction func onPlayTrailerButton(_ sender: Any) {
+        let vc = YoutubePlayerViewController.instantiate()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension MovieDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == badgeCollectionView {
-            return 5
+            return genreList.count
         } else if collectionView == actorCollectionView {
             return 10
         } else if collectionView == companiesCollectionView {
@@ -80,6 +94,7 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == badgeCollectionView {
             let cell = collectionView.dequeueCell(ofType: BadgeCollectionViewCell.self, for: indexPath, shouldRegister: true)
+            cell.data = genreList[indexPath.row]
             return cell
         } else if collectionView == actorCollectionView {
             let cell = collectionView.dequeueCell(ofType: ActorCollectionViewCell.self, for: indexPath, shouldRegister: true)
@@ -95,7 +110,9 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == badgeCollectionView {
-            return .init(width: 50, height: collectionView.frame.height)
+            let genreName = genreList[indexPath.row].genreName
+            let textWidth = genreName.getWidth(of: UIFont.systemFont(ofSize: 14))
+            return .init(width: textWidth + 20, height: collectionView.frame.height)
         } else if collectionView == actorCollectionView {
             return .init(width: collectionView.frame.width / 2.5, height: collectionView.frame.height)
         } else if collectionView == companiesCollectionView {
@@ -105,7 +122,17 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == actorCollectionView{
+            self.onActorCellTapped()
+        } else if collectionView == movieCollectionView {
+            self.onMovieCellTapped()
+        }
+    }
     
-    
+}
+
+extension MovieDetailViewController: MovieItemDelegate, ActorItemDelegate {
+    func onFavouriteTapped(isFavourite: Bool) { }
 }
 

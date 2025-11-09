@@ -13,7 +13,7 @@ class ShowcaseCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var playImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var showDatelabel: UILabel!
+    @IBOutlet weak var showDateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

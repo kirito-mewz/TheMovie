@@ -7,7 +7,7 @@
 
 import UIKit
 
-class YoutubePlayerViewController: UIViewController {
+class YoutubePlayerViewController: UIViewController, Storyboarded {
     
     override func viewDidLoad() {
         super.viewDidLoad()

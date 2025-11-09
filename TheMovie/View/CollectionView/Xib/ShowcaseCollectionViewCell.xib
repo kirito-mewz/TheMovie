@@ -22,7 +22,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KkI-EC-tMf">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="showcase" translatesAutoresizingMaskIntoConstraints="NO" id="hBK-B2-nPu">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBK-B2-nPu">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
                             </imageView>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQQ-LC-DlC" userLabel="Overlay View">
@@ -37,14 +37,14 @@
                                     <constraint firstAttribute="width" constant="40" id="ve1-f5-KM8"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNK-pU-0PS">
-                                <rect key="frame" x="10" y="144" width="280" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNK-pU-0PS">
+                                <rect key="frame" x="10" y="185" width="280" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Month, Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ev5-yq-ldp">
-                                <rect key="frame" x="10" y="173" width="280" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ev5-yq-ldp">
+                                <rect key="frame" x="10" y="190" width="280" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" systemColor="systemGray4Color"/>
                                 <nil key="highlightedColor"/>
@@ -83,14 +83,13 @@
                 <outlet property="movieImageView" destination="hBK-B2-nPu" id="0Al-rT-DI8"/>
                 <outlet property="movieTitleLabel" destination="VNK-pU-0PS" id="vjc-95-xXx"/>
                 <outlet property="playImageView" destination="fb1-UN-0m1" id="Pxr-ih-bi0"/>
-                <outlet property="showDatelabel" destination="ev5-yq-ldp" id="I4I-cn-Yta"/>
+                <outlet property="showDateLabel" destination="ev5-yq-ldp" id="nGV-h8-kqI"/>
             </connections>
             <point key="canvasLocation" x="140" y="154"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="play.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="showcase" width="236.66667175292969" height="148"/>
         <namedColor name="Color_Yellow">
             <color red="0.9100000262260437" green="0.64300000667572021" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

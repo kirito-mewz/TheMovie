@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ActorDetailViewController: UIViewController {
+class ActorDetailViewController: UIViewController, Storyboarded {
     
     // MARK: - IBOutlets
     @IBOutlet weak var actorImageView: UIImageView!
@@ -25,7 +25,6 @@ class ActorDetailViewController: UIViewController {
     
     @IBOutlet weak var relatedMovieCollectionView: UICollectionView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,12 +40,20 @@ extension ActorDetailViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueCell(ofType: ActorCollectionViewCell.self, for: indexPath, shouldRegister: true)
+        let cell = collectionView.dequeueCell(ofType: MovieCollectionViewCell.self, for: indexPath, shouldRegister: true)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: collectionView.frame.width / 2.5, height: collectionView.frame.height)
+        return .init(width: collectionView.frame.width / 3, height: collectionView.frame.height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.onMovieCellTapped()
+    }
+    
+}
+
+extension ActorDetailViewController: MovieItemDelegate {
     
 }
