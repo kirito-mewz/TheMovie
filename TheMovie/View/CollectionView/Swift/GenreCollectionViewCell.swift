@@ -15,9 +15,9 @@ class GenreCollectionViewCell: UICollectionViewCell {
     
     var onGenreTap: ((Int) -> Void) = {_ in}
     
-    var data: GenreVO? = nil {
+    var genre: GenreVO? {
         didSet {
-            if let data = data {
+            if let data = genre {
                 genreLabel.text = data.genreName
                 overlayView.isHidden = !data.isSelected
                 genreLabel.textColor = data.isSelected ? .white : .init(red: 63/255, green: 69/255, blue: 96/255, alpha: 1)
@@ -32,7 +32,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func _didCellTap() {
-        onGenreTap(data?.id ?? 0)
+        onGenreTap(genre?.id ?? 0)
     }
     
 

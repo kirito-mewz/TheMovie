@@ -65,6 +65,7 @@
 		669A069D2EC46B73007481D7 /* MovieCreditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A069C2EC46B73007481D7 /* MovieCreditResponse.swift */; };
 		669A069F2EC46BAE007481D7 /* ActorCreditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A069E2EC46BAE007481D7 /* ActorCreditResponse.swift */; };
 		669A06A12EC46CDC007481D7 /* MDBEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A06A02EC46CDC007481D7 /* MDBEndPoint.swift */; };
+		669A06A32EC484C8007481D7 /* GenreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A06A22EC484C8007481D7 /* GenreModel.swift */; };
 		CEF63AB374BD5C2C2F7F6E6E /* Pods_TheMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBCEA6A89FB43D3EF0728C8 /* Pods_TheMovie.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,7 @@
 		669A069C2EC46B73007481D7 /* MovieCreditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCreditResponse.swift; sourceTree = "<group>"; };
 		669A069E2EC46BAE007481D7 /* ActorCreditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCreditResponse.swift; sourceTree = "<group>"; };
 		669A06A02EC46CDC007481D7 /* MDBEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDBEndPoint.swift; sourceTree = "<group>"; };
+		669A06A22EC484C8007481D7 /* GenreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,6 +390,7 @@
 			children = (
 				669A068F2EC45C81007481D7 /* BaseModel.swift */,
 				669A06912EC45CB7007481D7 /* MovieModel.swift */,
+				669A06A22EC484C8007481D7 /* GenreModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -530,9 +533,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TheMovie/Pods-TheMovie-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TheMovie/Pods-TheMovie-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -571,6 +578,7 @@
 				669A06952EC46A8C007481D7 /* ActorResponse.swift in Sources */,
 				669A06972EC46AD8007481D7 /* MovieDetailResponse.swift in Sources */,
 				669A069D2EC46B73007481D7 /* MovieCreditResponse.swift in Sources */,
+				669A06A32EC484C8007481D7 /* GenreModel.swift in Sources */,
 				667FAA3B2EC06BB5009AB664 /* ActorDetailViewController.swift in Sources */,
 				667FAA0E2EBF8B39009AB664 /* ShowcaseCollectionViewCell.swift in Sources */,
 				667FAA3D2EC0743F009AB664 /* ListViewController.swift in Sources */,

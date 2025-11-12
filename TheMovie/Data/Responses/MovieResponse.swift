@@ -68,7 +68,7 @@ struct Genre: Codable {
     let id: Int?
     let name: String?
     
-    func convertToVO() -> GenreVO {
+    func convertToGenreVO() -> GenreVO {
         GenreVO(id: id ?? 0, genreName: name ?? "", isSelected: false)
     }
 }

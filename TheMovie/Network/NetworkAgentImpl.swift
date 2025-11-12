@@ -24,10 +24,17 @@ final class NetworkAgentImpl: NetworkAgent {
         }.validate(statusCode: 200..<300)
     }
     
-//    func fetchGenres(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<[Genre], any Error>) -> Void) {
-//        <#code#>
-//    }
-//    
+    func fetchGenres(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<[Genre], any Error>) -> Void) {
+        AF.request(endpoint.urlString).responseDecodable(of: MovieGenres.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data.genres ?? []))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 //    func fetchShowcaseMovies(withEndpoint endpoint: MDBEndPoint, page: Int, completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
 //        <#code#>
 //    }

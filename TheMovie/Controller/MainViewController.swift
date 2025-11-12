@@ -16,9 +16,10 @@ class MainViewController: UIViewController {
     var sliderMovies: [Movie]?
     var popularMovies: [Movie]?
     var popularSeries: [Movie]?
-
+    var movieGenres: [GenreVO]?
     
     let movieModel: MovieModel = MovieModelImpl.shared
+    let genreModel: GenreModel = GenreModelImpl.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +94,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         case Section.movieWihtGenre.rawValue:
             let cell = dequeueTableViewCell(ofType: MovieWithGenreTableViewCell.self, with: tableView, for: indexPath)
             cell.delegate = self
+            cell.genres = movieGenres
+            cell.movies = popularMovies
             return cell
         case Section.showcase.rawValue:
             let cell = dequeueTableViewCell(ofType: ShowcaseTableViewCell.self, with: tableView, for: indexPath)
@@ -160,6 +163,18 @@ extension MainViewController {
                 print("[Error: while fetching popular series]", error)
             }
         }
+        
+        // Fetch Genres
+        genreModel.getGenres { [weak self] result in
+            do {
+                let genres = try result.get()
+                self?.movieGenres = genres.map { $0.convertToGenreVO() }
+                self?.updateUI(at: .movieWihtGenre)
+            } catch {
+                print("[Error: while fetching genres]", error)
+            }
+        }
+        
         
     }
     
