@@ -10,10 +10,10 @@ import Alamofire
 protocol NetworkAgent {
     
     // MARK: - Main
-    func fetchMovies(withEndpoint endpoint: MDBEndPoint, completion: @escaping (Result<MovieResponse, Error>) -> Void)
+    func fetchMovies(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
     func fetchGenres(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<[Genre], Error>) -> Void)
-//    func fetchShowcaseMovies(withEndpoint endpoint: MDBEndPoint, page: Int, completion: @escaping (Result<MovieResponse, Error>) -> Void)
-//    func fetchActors(withEndpoint endpoint: MDBEndPoint, page: Int, completion: @escaping (Result<ActorResponse, Error>) -> Void)
+    func fetchShowcaseMovies(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
+    func fetchActors(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<ActorResponse, Error>) -> Void)
 //    func fetchSearchMovies(with query: String, page: Int, completion: @escaping (Result<MovieResponse, Error>) -> Void)
     
 //    // MARK: - Movie Detail

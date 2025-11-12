@@ -13,7 +13,7 @@ final class NetworkAgentImpl: NetworkAgent {
     
     private init() {}
     
-    func fetchMovies(withEndpoint endpoint: MDBEndPoint, completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
+    func fetchMovies(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
         AF.request(endpoint.urlString).responseDecodable(of: MovieResponse.self) { response in
             switch response.result {
             case .success(let data):
@@ -32,17 +32,31 @@ final class NetworkAgentImpl: NetworkAgent {
             case .failure(let error):
                 completion(.failure(error))
             }
-        }
+        }.validate(statusCode: 200..<300)
     }
     
-//    func fetchShowcaseMovies(withEndpoint endpoint: MDBEndPoint, page: Int, completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
-//        <#code#>
-//    }
-//    
-//    func fetchActors(withEndpoint endpoint: MDBEndPoint, page: Int, completion: @escaping (Result<ActorResponse, any Error>) -> Void) {
-//        <#code#>
-//    }
-//    
+    func fetchShowcaseMovies(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
+        AF.request(endpoint.urlString).responseDecodable(of: MovieResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }.validate(statusCode: 200..<300)
+    }
+    
+    func fetchActors(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<ActorResponse, any Error>) -> Void) {
+        AF.request(endpoint.urlString).responseDecodable(of: ActorResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }.validate(statusCode: 200..<300)
+    }
+    
 //    func fetchSearchMovies(with query: String, page: Int, completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
 //        <#code#>
 //    }

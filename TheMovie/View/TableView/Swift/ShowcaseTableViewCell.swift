@@ -15,6 +15,12 @@ class ShowcaseTableViewCell: UITableViewCell {
     var onMoreShowcaseTapped: (() -> Void)?
     var delegate: MovieItemDelegate?
     
+    var movies: [Movie]? {
+        didSet {
+            movieCollectionView.reloadData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -40,11 +46,12 @@ class ShowcaseTableViewCell: UITableViewCell {
 extension ShowcaseTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(ofType: ShowcaseCollectionViewCell.self, for: indexPath, shouldRegister: true)
+        cell.movie = movies?[indexPath.row]
         return cell
     }
     

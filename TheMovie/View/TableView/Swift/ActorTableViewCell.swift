@@ -15,6 +15,12 @@ class ActorTableViewCell: UITableViewCell {
     var onMoreActorTapped: (() -> Void)?
     var delegate: ActorItemDelegate?
     
+    var actors: [Actor]? {
+        didSet {
+            actorCollectionView.reloadData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -40,12 +46,13 @@ class ActorTableViewCell: UITableViewCell {
 extension ActorTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return actors?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(ofType: ActorCollectionViewCell.self, for: indexPath, shouldRegister: true)
         cell.delegate = self.delegate
+        cell.actor = actors?[indexPath.row]
         return cell
     }
     

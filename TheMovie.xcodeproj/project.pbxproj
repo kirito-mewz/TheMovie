@@ -66,6 +66,7 @@
 		669A069F2EC46BAE007481D7 /* ActorCreditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A069E2EC46BAE007481D7 /* ActorCreditResponse.swift */; };
 		669A06A12EC46CDC007481D7 /* MDBEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A06A02EC46CDC007481D7 /* MDBEndPoint.swift */; };
 		669A06A32EC484C8007481D7 /* GenreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A06A22EC484C8007481D7 /* GenreModel.swift */; };
+		669A06A52EC49AAF007481D7 /* ActorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A06A42EC49AAF007481D7 /* ActorModel.swift */; };
 		CEF63AB374BD5C2C2F7F6E6E /* Pods_TheMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBCEA6A89FB43D3EF0728C8 /* Pods_TheMovie.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		669A069E2EC46BAE007481D7 /* ActorCreditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCreditResponse.swift; sourceTree = "<group>"; };
 		669A06A02EC46CDC007481D7 /* MDBEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDBEndPoint.swift; sourceTree = "<group>"; };
 		669A06A22EC484C8007481D7 /* GenreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreModel.swift; sourceTree = "<group>"; };
+		669A06A42EC49AAF007481D7 /* ActorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +393,7 @@
 				669A068F2EC45C81007481D7 /* BaseModel.swift */,
 				669A06912EC45CB7007481D7 /* MovieModel.swift */,
 				669A06A22EC484C8007481D7 /* GenreModel.swift */,
+				669A06A42EC49AAF007481D7 /* ActorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				667FAA3B2EC06BB5009AB664 /* ActorDetailViewController.swift in Sources */,
 				667FAA0E2EBF8B39009AB664 /* ShowcaseCollectionViewCell.swift in Sources */,
 				667FAA3D2EC0743F009AB664 /* ListViewController.swift in Sources */,
+				669A06A52EC49AAF007481D7 /* ActorModel.swift in Sources */,
 				667FAA2F2EBFA184009AB664 /* UILabel+Ext.swift in Sources */,
 				667FAA412EC08617009AB664 /* SearchViewController.swift in Sources */,
 				669A06872EC45AC3007481D7 /* MovieResponse.swift in Sources */,

@@ -17,9 +17,12 @@ class MainViewController: UIViewController {
     var popularMovies: [Movie]?
     var popularSeries: [Movie]?
     var movieGenres: [GenreVO]?
+    var showcaseMovies: [Movie]?
+    var actors: [Actor]?
     
     let movieModel: MovieModel = MovieModelImpl.shared
     let genreModel: GenreModel = GenreModelImpl.shared
+    let actorModel: ActorModel = ActorModelImpl.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +108,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
             cell.delegate = self
+            cell.movies = showcaseMovies
             return cell
         case Section.actor.rawValue:
             let cell = dequeueTableViewCell(ofType: ActorTableViewCell.self, with: tableView, for: indexPath)
@@ -114,6 +118,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
                 self?.navigationController?.pushViewController(vc, animated: true)
             }
             cell.delegate = self
+            cell.actors = actors
             return cell
         default :
             return UITableViewCell()
@@ -164,7 +169,7 @@ extension MainViewController {
             }
         }
         
-        // Fetch Genres
+        // Fetch genres
         genreModel.getGenres { [weak self] result in
             do {
                 let genres = try result.get()
@@ -175,6 +180,25 @@ extension MainViewController {
             }
         }
         
+        // Fetch showcase movies
+        movieModel.getShowcaseMovies(pageNo: nil) { [weak self] result in
+            do {
+                self?.showcaseMovies = try result.get().results
+                self?.updateUI(at: .showcase)
+            } catch {
+                print("[Error: while fetching showcase movies]", error)
+            }
+        }
+        
+        // Fetch actor
+        actorModel.getActor(pageNo: nil) { [weak self] result in
+            do {
+                self?.actors = try result.get().results
+                self?.updateUI(at: .actor)
+            } catch {
+                print("[Error: while fetching actor]", error)
+            }
+        }
         
     }
     

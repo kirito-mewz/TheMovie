@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ShowcaseCollectionViewCell: UICollectionViewCell {
     
@@ -14,6 +15,18 @@ class ShowcaseCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var showDateLabel: UILabel!
+    
+    var movie: Movie? {
+        didSet {
+            guard let data = movie else { return }
+            
+            if let image = data.backdropPath {
+                movieImageView.sd_setImage(with: URL(string: "\(imageBaseURL)/\(image)"))
+            }
+            movieTitleLabel.text = data.title
+            showDateLabel.text = data.convertToMovieDate()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

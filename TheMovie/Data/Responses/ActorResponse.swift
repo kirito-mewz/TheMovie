@@ -10,14 +10,13 @@ import Foundation
 // MARK: - ActorResponse
 struct ActorResponse: Codable {
     let page: Int?
-    let actors: [Actor]?
+    let results: [Actor]?
     let totalPages, totalResults: Int?
 
     enum CodingKeys: String, CodingKey {
-        case page
+        case page, results
         case totalPages = "total_pages"
         case totalResults = "total_results"
-        case actors = "results"
     }
 }
 

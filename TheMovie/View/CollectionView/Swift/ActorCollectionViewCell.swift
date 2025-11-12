@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ActorCollectionViewCell: UICollectionViewCell {
     
@@ -16,6 +17,19 @@ class ActorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var roleLabel: UILabel!
     
     var delegate: ActorItemDelegate?
+    
+    var actor: Actor? {
+        didSet {
+            guard let data = actor else { return }
+            
+            if let image = data.profilePath {
+                actorImageView.sd_setImage(with: URL(string: "\(imageBaseURL)/\(image)"))
+            }
+            
+            actorNameLabel.text = data.name
+            roleLabel.text = data.role
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
