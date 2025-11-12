@@ -22,8 +22,8 @@ protocol NetworkAgent {
     func fetchMovieActors(movidId id: Int, type: MovieType, _ completion: @escaping (Result<[Actor], Error>) -> Void)
     func fetchSimilarMovies(movieId id: Int, type: MovieType, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
   
-//    // MARK: - Actor Detail
-//    func fetchActorDetail(actorId id: Int, _ completion: @escaping(Result<ActorDetailResponse, Error>) -> Void)
-//    func fetchActorMovies(actorId id: Int,_ completion: @escaping (Result<ActorCreditResponse, Error>) -> Void)
+    // MARK: - Actor Detail
+    func fetchActorDetail(actorId id: Int, _ completion: @escaping(Result<ActorDetailResponse, Error>) -> Void)
+    func fetchActorMovies(actorId id: Int,_ completion: @escaping (Result<ActorCreditResponse, Error>) -> Void)
     
 }

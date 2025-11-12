@@ -103,7 +103,7 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
         if type == .movie {
              self.onMovieCellTapped(movieId: movies[indexPath.row].id, type: .movie)
         } else {
-            self.onActorCellTapped()
+            self.onActorCellTapped(actorId: actors[indexPath.row].id)
         }
     }
     

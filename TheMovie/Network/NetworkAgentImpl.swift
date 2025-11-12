@@ -121,5 +121,29 @@ final class NetworkAgentImpl: NetworkAgent {
         }.validate(statusCode: 200..<300)
     }
     
+    // MARK: - Actor Detail
+    func fetchActorDetail(actorId id: Int, _ completion: @escaping(Result<ActorDetailResponse, Error>) -> Void) {
+        let urlString = MDBEndPoint.actorDetail(id: id).urlString
+        AF.request(urlString).responseDecodable(of: ActorDetailResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }.validate(statusCode: 200..<300)
+    }
+    
+    func fetchActorMovies(actorId id: Int,_ completion: @escaping (Result<ActorCreditResponse, Error>) -> Void) {
+        let urlString = MDBEndPoint.actorMovies(id: id).urlString
+        AF.request(urlString).responseDecodable(of: ActorCreditResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }.validate(statusCode: 200..<300)
+    }
     
 }

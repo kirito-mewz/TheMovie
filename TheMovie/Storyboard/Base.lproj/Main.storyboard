@@ -901,8 +901,8 @@
                         <outlet property="detailNamelLabel" destination="ukX-KH-qZb" id="Y2k-de-Uty"/>
                         <outlet property="detailPobLabel" destination="cJN-TB-H87" id="5bV-Cb-frL"/>
                         <outlet property="detailRoleLabel" destination="xuH-V3-2lM" id="vUA-ys-QxV"/>
+                        <outlet property="movieCollectionView" destination="XHa-bQ-oDb" id="C5E-G6-mdV"/>
                         <outlet property="popularityLabel" destination="86z-Ze-Kod" id="j1I-Tv-6ED"/>
-                        <outlet property="relatedMovieCollectionView" destination="XHa-bQ-oDb" id="yKJ-g6-CKR"/>
                         <outlet property="roleLabel" destination="V6b-Pb-j6N" id="GmH-Tc-TJZ"/>
                     </connections>
                 </viewController>

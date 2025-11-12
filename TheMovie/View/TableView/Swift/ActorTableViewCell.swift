@@ -61,7 +61,7 @@ extension ActorTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.onActorCellTapped()
+        delegate?.onActorCellTapped(actorId: actors?[indexPath.row].id)
     }
     
 }

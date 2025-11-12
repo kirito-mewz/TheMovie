@@ -96,7 +96,7 @@ class MovieDetailViewController: UIViewController, Storyboarded {
             releasedYearLabel.text = String(data.lastAirDate?.split(separator: "-").first ?? "")
             movieTitleLabel.text = data.name
             
-            durationLabel.text = "\(data.noOfSeasons ?? 1) \(data.noOfSeasons ?? 1 > 1 ? "Season" : "Seasons")"
+            durationLabel.text = "\(data.noOfSeasons ?? 1) \(data.noOfSeasons ?? 1 > 1 ? "Seasons" : "Season")"
             
             originalTitleLabel.text = data.originalName
             releasedDateLabel.text = data.convertToMovieDate(date: data.lastAirDate ?? "")
@@ -178,9 +178,9 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == actorCollectionView{
-            self.onActorCellTapped()
+            self.onActorCellTapped(actorId: movieActors?[indexPath.row].id)
         } else if collectionView == movieCollectionView {
-            self.onMovieCellTapped(movieId: similarMovies?[indexPath.row].id, type: .movie)
+            self.onMovieCellTapped(movieId: similarMovies?[indexPath.row].id, type: self.type)
         }
     }
     
@@ -199,7 +199,7 @@ extension MovieDetailViewController {
                 print("[Error: while fetching movie detail]", error)
             }
         }
-        fetchMovieCredits()
+        fetchMovieActors()
         fetchSimilarMovies()
     }
     
@@ -216,7 +216,7 @@ extension MovieDetailViewController {
         }
     }
     
-    func fetchMovieCredits() {
+    func fetchMovieActors() {
         movieModel.getMovieActors(movieId: movieId, type: self.type) { [weak self] result in
             do {
                 self?.movieActors = try result.get()

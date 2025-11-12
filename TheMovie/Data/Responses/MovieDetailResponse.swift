@@ -70,6 +70,24 @@ struct MovieDetailResponse: Codable {
         return releaseDate ?? ""
     }
     
+    func convertToMovie() -> Movie {
+        Movie(adult: self.adult,
+              backdropPath: self.backdropPath,
+              genreIds: nil, id: self.id,
+              originalLanguage: self.originalLanguage,
+              originalTitle: self.originalTitle,
+              overview: self.overview,
+              popularity: self.popularity,
+              posterPath: self.posterPath,
+              releaseDate: self.releaseDate,
+              name: self.name,
+              title: self.title,
+              video: self.video,
+              voteAverage: self.voteAverage,
+              voteCount: self.voteCount,
+              mediaType: self.mediaType)
+    }
+    
 }
 
 // MARK: - ProductionCompany
