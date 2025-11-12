@@ -53,11 +53,7 @@ class MovieWithGenreTableViewCell: UITableViewCell {
 extension MovieWithGenreTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == genreCollectionView {
-            return genres?.count ?? 0
-        } else {
-            return movies?.count ?? 0
-        }
+        return collectionView == genreCollectionView ? genres?.count ?? 0 : movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

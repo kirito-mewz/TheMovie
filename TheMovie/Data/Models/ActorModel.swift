@@ -9,7 +9,7 @@ import Foundation
 
 protocol ActorModel {
     
-    func getActor(pageNo: Int?, completion: @escaping (Result<ActorResponse, Error>) -> Void)
+    func getActors(pageNo: Int?, completion: @escaping (Result<ActorResponse, Error>) -> Void)
     
 }
 
@@ -19,7 +19,7 @@ final class ActorModelImpl: BaseModel, ActorModel {
     
     private override init() { }
     
-    func getActor(pageNo: Int?, completion: @escaping (Result<ActorResponse, Error>) -> Void) {
+    func getActors(pageNo: Int?, completion: @escaping (Result<ActorResponse, Error>) -> Void) {
         networkAgent.fetchActors(withEndpoint: .actors(pageNo: pageNo ?? 1)) { result in
             do {
                 let response = try result.get()
