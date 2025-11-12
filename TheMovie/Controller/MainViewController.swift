@@ -12,6 +12,14 @@ class MainViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var movieTableView: UITableView!
     
+    // MARK: - Properties
+    var sliderMovies: [Movie]?
+    var popularMovies: [Movie]?
+    var popularSeries: [Movie]?
+
+    
+    let movieModel: MovieModel = MovieModelImpl.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,11 +32,28 @@ class MainViewController: UIViewController {
         ].forEach {
             movieTableView.register(UINib(nibName: String(describing: $0), bundle: nil), forCellReuseIdentifier: String(describing: $0))
         }
+        
+        loadData()
     }
 
     @IBAction func onSearchTapped(_ sender: Any) {
         let vc = SearchViewController.instantiate()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    public enum Section: Int, Hashable {
+        case sliderMovies = 0
+        case popularMovies = 1
+        case popularSeries = 2
+        case showtime = 3
+        case movieWihtGenre = 4
+        case showcase = 5
+        case actor = 6
+    }
+    
+    private func updateUI(at section: Section) {
+        let indexSet = IndexSet(integer: section.rawValue)
+        movieTableView.reloadSections(indexSet, with: .automatic)
     }
     
 }
@@ -45,28 +70,31 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
+        case Section.sliderMovies.rawValue:
             let cell = dequeueTableViewCell(ofType: SliderTableViewCell.self, with: tableView, for: indexPath)
             cell.delegate = self
+            cell.movies = sliderMovies
             return cell
-        case 1:
+        case Section.popularMovies.rawValue:
             let cell = dequeueTableViewCell(ofType: PopularTableViewCell.self, with: tableView, for: indexPath)
             cell.sectionTitleLabel.text = "BEST POPULAR MOVIES"
             cell.delegate = self
+            cell.movies = popularMovies
             return cell
-        case 2:
+        case Section.popularSeries.rawValue:
             let cell = dequeueTableViewCell(ofType: PopularTableViewCell.self, with: tableView, for: indexPath)
             cell.sectionTitleLabel.text = "BEST POPULAR SERIES"
             cell.delegate = self
+            cell.movies = popularSeries
             return cell
-        case 3:
+        case Section.showtime.rawValue:
             let cell = dequeueTableViewCell(ofType: ShowtimeTableViewCell.self, with: tableView, for: indexPath)
             return cell
-        case 4:
+        case Section.movieWihtGenre.rawValue:
             let cell = dequeueTableViewCell(ofType: MovieWithGenreTableViewCell.self, with: tableView, for: indexPath)
             cell.delegate = self
             return cell
-        case 5:
+        case Section.showcase.rawValue:
             let cell = dequeueTableViewCell(ofType: ShowcaseTableViewCell.self, with: tableView, for: indexPath)
             cell.onMoreShowcaseTapped = { [weak self] in
                 let vc = ListViewController.instantiate()
@@ -75,7 +103,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             }
             cell.delegate = self
             return cell
-        case 6:
+        case Section.actor.rawValue:
             let cell = dequeueTableViewCell(ofType: ActorTableViewCell.self, with: tableView, for: indexPath)
             cell.onMoreActorTapped = { [weak self] in
                 let vc = ListViewController.instantiate()
@@ -95,6 +123,44 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
         setupCell(cell)
         return cell
+    }
+    
+}
+
+extension MainViewController {
+    
+    func loadData() {
+        
+        // Fetch slider movies
+        movieModel.getSliderMovies(pageNo: nil) { [weak self] result in
+            do {
+                self?.sliderMovies = try result.get().results
+                self?.updateUI(at: .sliderMovies)
+            } catch {
+                print("[Error: while fetching slider movies]", error)
+            }
+        }
+        
+        // Fetch popular movies
+        movieModel.getPopularMovies(pageNo: nil){ [weak self] result in
+            do {
+                self?.popularMovies = try result.get().results
+                self?.updateUI(at: .popularMovies)
+            } catch {
+                print("[Error: while fetching popular movies]", error)
+            }
+        }
+        
+        // Fetch popular series
+        movieModel.getPopularSeries(pageNo: nil) { [weak self] result in
+            do {
+                self?.popularSeries = try result.get().results
+                self?.updateUI(at: .popularSeries)
+            } catch {
+                print("[Error: while fetching popular series]", error)
+            }
+        }
+        
     }
     
 }

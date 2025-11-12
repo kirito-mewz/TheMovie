@@ -6,12 +6,25 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SliderCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var playImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
+    
+    var movie: Movie? {
+        didSet {
+            guard let data = movie else { return }
+        
+            if let image = data.backdropPath {
+                movieImageView.sd_setImage(with: URL(string: "\(imageBaseURL)/\(image)"))
+            }
+            
+            movieTitleLabel.text = data.title
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

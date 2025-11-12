@@ -6,5 +6,8 @@ target 'TheMovie' do
   use_frameworks!
 
   # Pods for TheMovie
+  pod 'Alamofire'
+  pod 'Wormholy', :configurations => ['Debug']
+  pod 'SDWebImage'
 
 end

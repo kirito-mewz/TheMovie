@@ -14,6 +14,13 @@ class SliderTableViewCell: UITableViewCell {
     
     var delegate: MovieItemDelegate?
     
+    var movies: [Movie]? {
+        didSet {
+            pageControl.numberOfPages = movies?.count ?? 0
+            movieCollectionView.reloadData()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -31,11 +38,12 @@ class SliderTableViewCell: UITableViewCell {
 
 extension SliderTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(ofType: SliderCollectionViewCell.self, for: indexPath, shouldRegister: true)
+        cell.movie = movies?[indexPath.row]
         return cell
     }
     
