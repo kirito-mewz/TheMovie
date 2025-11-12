@@ -15,6 +15,10 @@ protocol MovieModel {
     func getShowcaseMovies(pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
     func getSearchMovies(query: String, pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
     
+    func getMovieDetail(movieId id: Int, type: MovieType, _ completion: @escaping (Result<MovieDetailResponse, Error>) -> Void)
+    func getMovieTrailer(movieId id: Int, type: MovieType, _ completion: @escaping (Result<Trailer, Error>) -> Void)
+    func getMovieActors(movieId id: Int, type: MovieType, completion: @escaping (Result<[Actor], Error>) -> Void)
+    func getSimilarMovies(movieId id: Int, type: MovieType, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
 }
 
 final class MovieModelImpl: BaseModel, MovieModel {
@@ -69,6 +73,50 @@ final class MovieModelImpl: BaseModel, MovieModel {
     
     func getSearchMovies(query: String, pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void) {
         networkAgent.fetchSearchMovies(with: query, page: pageNo ?? 1) { result in
+            do {
+                let response = try result.get()
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getMovieDetail(movieId id: Int, type: MovieType, _ completion: @escaping (Result<MovieDetailResponse, Error>) -> Void) {
+        networkAgent.fetchMovieDetail(movieId: id, type: type) { result in
+            do {
+                let response = try result.get()
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getMovieTrailer(movieId id: Int, type: MovieType, _ completion: @escaping (Result<Trailer, Error>) -> Void) {
+        networkAgent.fetchMovieTrailer(movieId: id, type: type) { result in
+            do {
+                let response = try result.get()
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getMovieActors(movieId id: Int, type: MovieType, completion: @escaping (Result<[Actor], Error>) -> Void) {
+        networkAgent.fetchMovieActors(movidId: id, type: type) { result in
+            do {
+                let response = try result.get()
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getSimilarMovies(movieId id: Int, type: MovieType, _ completion: @escaping (Result<MovieResponse, Error>) -> Void) {
+        networkAgent.fetchSimilarMovies(movieId: id, type: type) { result in
             do {
                 let response = try result.get()
                 completion(.success(response))

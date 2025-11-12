@@ -52,6 +52,10 @@ extension PopularTableViewCell: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.onMovieCellTapped()
+        if sectionTitleLabel.text!.lowercased().contains("movies") {
+            delegate?.onMovieCellTapped(movieId: movies?[indexPath.row].id, type: .movie)
+        } else {
+            delegate?.onMovieCellTapped(movieId: movies?[indexPath.row].id, type: .series)
+        }
     }
 }

@@ -12,10 +12,10 @@ class BadgeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var genreLabel: UILabel!
     
-    var data: GenreVO? {
+    var genre: Genre? {
         didSet {
-            if let data = data {
-                genreLabel.text = data.genreName
+            if let data = genre {
+                genreLabel.text = data.name
             }
         }
     }

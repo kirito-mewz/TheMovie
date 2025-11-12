@@ -57,6 +57,19 @@ struct MovieDetailResponse: Codable {
         case mediaType = "media_type"
     }
     
+    func convertToMovieDate(date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let newDateFormatter = DateFormatter()
+        newDateFormatter.dateFormat = "dd MMMM, yyyy"
+        
+        if let date = dateFormatter.date(from: date) {
+            return newDateFormatter.string(from: date).uppercased()
+        }
+        return releaseDate ?? ""
+    }
+    
 }
 
 // MARK: - ProductionCompany

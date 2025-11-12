@@ -8,7 +8,7 @@
 import UIKit
 
 class ListViewController: UIViewController, Storyboarded {
-    
+
     enum ListType { case movie, cast }
     
     // MARK: - IBOutlet
@@ -101,7 +101,7 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if type == .movie {
-            self.onMovieCellTapped()
+             self.onMovieCellTapped(movieId: movies[indexPath.row].id, type: .movie)
         } else {
             self.onActorCellTapped()
         }

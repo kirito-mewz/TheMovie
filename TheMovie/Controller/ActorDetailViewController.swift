@@ -49,7 +49,7 @@ extension ActorDetailViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.onMovieCellTapped()
+        // self.onMovieCellTapped()
     }
     
 }

@@ -19,6 +19,7 @@ enum MDBEndPoint {
     case movieDetail(id: Int, type: MovieType)
     case movieTrailer(id: Int, type: MovieType)
     case movieActors(id: Int, type: MovieType)
+    case similarMovies(id: Int, type: MovieType)
     
     case actorDetail(id: Int)
     case actorMovies(id: Int)
@@ -45,6 +46,8 @@ enum MDBEndPoint {
                 return "\(baseURL)/\(type.rawValue)/\(id)/videos?api_key=\(apiKey)"
             case .movieActors(let id, let type):
                 return "\(baseURL)/\(type.rawValue)/\(id)/credits?api_key=\(apiKey)"
+            case .similarMovies(let id, let type):
+                return "\(baseURL)/\(type.rawValue)/\(id)/recommendations?api_key=\(apiKey)"
                 
             case .actorDetail(let id):
                 return "\(baseURL)/person/\(id)?api_key=\(apiKey)"

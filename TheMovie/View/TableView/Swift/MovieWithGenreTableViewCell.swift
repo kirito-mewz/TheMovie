@@ -84,7 +84,7 @@ extension MovieWithGenreTableViewCell: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         delegate?.onMovieCellTapped()
+        delegate?.onMovieCellTapped(movieId: movies?[indexPath.row].id, type: .movie)
     }
     
 }

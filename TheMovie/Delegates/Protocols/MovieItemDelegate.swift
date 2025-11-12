@@ -8,12 +8,14 @@
 import UIKit
 
 protocol MovieItemDelegate {
-    func onMovieCellTapped()
+    func onMovieCellTapped(movieId: Int?, type: MovieType)
 }
 
 extension MovieItemDelegate where Self: UIViewController {
-    func onMovieCellTapped() {
+    func onMovieCellTapped(movieId: Int?, type: MovieType) {
         let vc = MovieDetailViewController.instantiate()
+        vc.movieId = movieId ?? -1
+        vc.type = type
         (self as UIViewController).navigationController?.pushViewController(vc, animated: true)
     }
 }
