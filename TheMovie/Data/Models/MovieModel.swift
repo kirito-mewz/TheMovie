@@ -13,6 +13,7 @@ protocol MovieModel {
     func getPopularMovies(pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
     func getPopularSeries(pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
     func getShowcaseMovies(pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
+    func getSearchMovies(query: String, pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
     
 }
 
@@ -57,6 +58,17 @@ final class MovieModelImpl: BaseModel, MovieModel {
     
     func getShowcaseMovies(pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void) {
         networkAgent.fetchShowcaseMovies(withEndpoint: .showcaseMovies(pageNo: pageNo ?? 1)) { result in
+            do {
+                let response = try result.get()
+                completion(.success(response))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getSearchMovies(query: String, pageNo: Int?, _ completion: @escaping (Result<MovieResponse, Error>) -> Void) {
+        networkAgent.fetchSearchMovies(with: query, page: pageNo ?? 1) { result in
             do {
                 let response = try result.get()
                 completion(.success(response))

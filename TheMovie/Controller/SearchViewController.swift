@@ -14,8 +14,18 @@ class SearchViewController: UIViewController, Storyboarded {
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var upButton: UIButton!
     
+    // MARK: - Properties
+    var queryText = ""
+    var currentPage = 1
+    var totalPages = 1
+    
+    var movies: [Movie] = []
+    var movieModel: MovieModel = MovieModelImpl.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        movieSearchBar.delegate = self
         
         upButton.transform = CGAffineTransform(scaleX: 0, y: 0)
         
@@ -42,11 +52,12 @@ class SearchViewController: UIViewController, Storyboarded {
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 16
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueCell(ofType: MovieCollectionViewCell.self, for: indexPath, shouldRegister: true)
+        cell.movie = movies[indexPath.row]
         return cell
     }
     
@@ -71,6 +82,64 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.onMovieCellTapped()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastRow = indexPath.row == movies.count - 1
+        if lastRow && currentPage <= totalPages {
+            currentPage += 1
+            searchMovies()
+        }
+    }
+    
+}
+
+extension SearchViewController: UISearchBarDelegate, UISearchControllerDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let text = searchBar.text, !text.isEmpty {
+            queryText = text
+            currentPage = 1
+            searchMovies(pageNo: currentPage)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        movies = []
+        movieCollectionView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+    
+}
+
+extension SearchViewController {
+    
+    func searchMovies(pageNo: Int = 1) {
+        movieModel.getSearchMovies(query: queryText, pageNo: pageNo) { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.totalPages = response.totalPages ?? 1
+                
+                if pageNo == 1 {
+                    self?.movies = response.results ?? []
+                } else {
+                    self?.movies.append(contentsOf: response.results ?? [])
+                }
+                self?.movieCollectionView.reloadData()
+                
+            } catch {
+                print("[Error while searching movie]", error)
+            }
+        }
     }
     
 }

@@ -57,10 +57,17 @@ final class NetworkAgentImpl: NetworkAgent {
         }.validate(statusCode: 200..<300)
     }
     
-//    func fetchSearchMovies(with query: String, page: Int, completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
-//        <#code#>
-//    }
-//    
+    func fetchSearchMovies(with query: String, page: Int, completion: @escaping (Result<MovieResponse, any Error>) -> Void) {
+        AF.request(MDBEndPoint.searchMovies(query: query).urlString).responseDecodable(of: MovieResponse.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }.validate(statusCode: 200..<300)
+    }
+    
     
     
     

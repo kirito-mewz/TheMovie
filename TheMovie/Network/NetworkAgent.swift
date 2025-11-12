@@ -14,7 +14,7 @@ protocol NetworkAgent {
     func fetchGenres(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<[Genre], Error>) -> Void)
     func fetchShowcaseMovies(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<MovieResponse, Error>) -> Void)
     func fetchActors(withEndpoint endpoint: MDBEndPoint, _ completion: @escaping (Result<ActorResponse, Error>) -> Void)
-//    func fetchSearchMovies(with query: String, page: Int, completion: @escaping (Result<MovieResponse, Error>) -> Void)
+    func fetchSearchMovies(with query: String, page: Int, completion: @escaping (Result<MovieResponse, Error>) -> Void)
     
 //    // MARK: - Movie Detail
 //    func fetchMovieDetail(movieId id: Int, type: MovieType, _ completion: @escaping (Result<MovieDetailResponse, Error>) -> Void)
