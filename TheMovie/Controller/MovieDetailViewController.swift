@@ -72,8 +72,6 @@ class MovieDetailViewController: UIViewController, Storyboarded {
     
     @IBAction func onPlayTrailerButton(_ sender: Any) {
         self.playTrailer()
-//        let vc = YoutubePlayerViewController.instantiate()
-//        navigationController?.pushViewController(vc, animated: true)
     }
     
     func bindData(with detail: MovieDetailResponse?) {
@@ -209,7 +207,9 @@ extension MovieDetailViewController {
         movieModel.getMovieTrailer(movieId: movieId, type: self.type) { [weak self] result in
             do {
                 let response = try result.get()
-                print(response.id)
+                let vc = YoutubePlayerViewController.instantiate()
+                vc.keyPath = response.keyPath
+                self?.navigationController?.pushViewController(vc, animated: true)
             } catch {
                 print("[Error: while fetching movie trailer]", error)
             }

@@ -1045,7 +1045,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9v-fG-i8f">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v9v-fG-i8f" customClass="YTPlayerView">
                                 <rect key="frame" x="0.0" y="301" width="393" height="250"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -1061,6 +1061,9 @@
                             <constraint firstItem="v9v-fG-i8f" firstAttribute="centerY" secondItem="5FF-cm-dL2" secondAttribute="centerY" id="kCy-Qa-4Z3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="youtubePlayerView" destination="v9v-fG-i8f" id="Ab3-I5-5Od"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oPc-cF-hIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

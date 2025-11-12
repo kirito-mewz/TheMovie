@@ -6,13 +6,24 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
 class YoutubePlayerViewController: UIViewController, Storyboarded {
+    
+    // MARK: - IBOutlet
+    @IBOutlet weak var youtubePlayerView: YTPlayerView!
+    
+    // MARK: - Properties
+    var keyPath: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let data = keyPath else { return }
+        
+        youtubePlayerView.load(withVideoId: data)
+        youtubePlayerView.playVideo()
+
     }
     
 

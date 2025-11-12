@@ -9,5 +9,6 @@ target 'TheMovie' do
   pod 'Alamofire'
   pod 'Wormholy', :configurations => ['Debug']
   pod 'SDWebImage'
+  pod "youtube-ios-player-helper"
 
 end
