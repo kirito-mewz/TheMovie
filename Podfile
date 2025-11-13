@@ -11,4 +11,6 @@ target 'TheMovie' do
   pod 'SDWebImage'
   pod "youtube-ios-player-helper"
 
+  pod 'RealmSwift'
+
 end

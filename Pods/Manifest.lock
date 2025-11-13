@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (5.10.2)
+  - Realm (20.0.3):
+    - Realm/Headers (= 20.0.3)
+  - Realm/Headers (20.0.3)
+  - RealmSwift (20.0.3):
+    - Realm (= 20.0.3)
   - SDWebImage (5.21.3):
     - SDWebImage/Core (= 5.21.3)
   - SDWebImage/Core (5.21.3)
@@ -8,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - RealmSwift
   - SDWebImage
   - Wormholy
   - youtube-ios-player-helper
@@ -15,16 +21,20 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Realm
+    - RealmSwift
     - SDWebImage
     - Wormholy
     - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
+  Realm: 853e5089d6042dff807bda000277eadfe2da93d2
+  RealmSwift: f33c19577cefcbf681345d721fcbc7b42be4c949
   SDWebImage: 16309af6d214ba3f77a7c6f6fdda888cb313a50a
   Wormholy: ab1c8c2f02f58587a0941deb0088555ffbf039a1
   youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: df454554ec4ebcb01ed56d9ae1f29f870fef7d9a
+PODFILE CHECKSUM: 46c11bdf7fc9d9649597b3592ca2ee9c9fe4871b
 
 COCOAPODS: 1.16.2

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - MovieDetailResponse
 struct MovieDetailResponse: Codable {
@@ -15,7 +16,7 @@ struct MovieDetailResponse: Codable {
     let genres: [Genre]?
     let homepage: String?
     let id: Int?
-    let imdbID, originalLanguage, originalTitle, originalName, name, overview: String?
+    let imdbId, originalLanguage, originalTitle, originalName, name, overview: String?
     let popularity: Double?
     let posterPath: String?
     let productionCompanies: [ProductionCompany]?
@@ -36,7 +37,7 @@ struct MovieDetailResponse: Codable {
         case adult
         case backdropPath = "backdrop_path"
         case budget, genres, homepage, id
-        case imdbID = "imdb_id"
+        case imdbId = "imdb_id"
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case originalName = "original_name"
@@ -88,6 +89,56 @@ struct MovieDetailResponse: Codable {
               mediaType: self.mediaType)
     }
     
+    func convertToMovieDetailEmbeddedObject() -> MovieDetailEmbeddedObject {
+        let genreList = List<GenreObject>()
+        genres?.map { $0.convertToGenreObject() }.forEach { genreList.append($0) }
+        
+        let companyList = List<ProductionCompanyEmbeddedObject>()
+        productionCompanies?.map { $0.convertToProductionCompanyObj() }.forEach { companyList.append($0) }
+        
+        let countryList = List<ProductionCountryEmbeddedObject>()
+        productionCountries?.map { $0.convertToProductionCountryObj() }.forEach { countryList.append($0) }
+        
+        let languageList = List<SpokenLanguageEmbeddedObject>()
+        spokenLanguages?.map { $0.convertToSpokenLanguageObj() }.forEach { languageList.append($0) }
+        
+        let episodeRuntimeList = List<Int>()
+        episodeRunTime?.forEach { episodeRuntimeList.append($0) }
+        
+        let obj = MovieDetailEmbeddedObject()
+        obj.adult = adult
+        obj.backdropPath = backdropPath
+        obj.budget = budget
+        obj.genres = genreList
+        obj.homepage = homepage
+        obj.id = id
+        obj.imdbId = imdbId
+        obj.originalLanguage = originalLanguage
+        obj.originalTitle = originalTitle
+        obj.originalName = originalName
+        obj.name = name
+        obj.overview = overview
+        obj.popularity = popularity
+        obj.posterPath = posterPath
+        obj.productionCompanies = companyList
+        obj.productionCountries = countryList
+        obj.releaseDate = releaseDate
+        obj.lastAirDate = lastAirDate
+        obj.revenue = revenue
+        obj.runtime = runtime
+        obj.spokenLanguages = languageList
+        obj.status = status
+        obj.tagline = tagline
+        obj.title = title
+        obj.video = video
+        obj.voteAverage = voteAverage
+        obj.voteCount = voteCount
+        obj.episodeRunTime = episodeRuntimeList
+        obj.noOfSeasons = noOfSeasons
+        obj.mediaType = mediaType
+        return obj
+    }
+    
 }
 
 // MARK: - ProductionCompany
@@ -101,6 +152,15 @@ struct ProductionCompany: Codable {
         case name
         case originCountry = "origin_country"
     }
+    
+    func convertToProductionCompanyObj() -> ProductionCompanyEmbeddedObject {
+        let obj = ProductionCompanyEmbeddedObject()
+        obj.id = id
+        obj.logoPath = logoPath
+        obj.name = name
+        obj.originCountry = originCountry
+        return obj
+    }
 }
 
 // MARK: - ProductionCountry
@@ -110,6 +170,13 @@ struct ProductionCountry: Codable {
     enum CodingKeys: String, CodingKey {
         case iso3166_1 = "iso_3166_1"
         case name
+    }
+    
+    func convertToProductionCountryObj() -> ProductionCountryEmbeddedObject {
+        let obj = ProductionCountryEmbeddedObject()
+        obj.iso3166_1 = iso3166_1
+        obj.name = name
+        return obj
     }
 }
 
@@ -121,5 +188,13 @@ struct SpokenLanguage: Codable {
         case englishName = "english_name"
         case iso639_1 = "iso_639_1"
         case name
+    }
+    
+    func convertToSpokenLanguageObj() -> SpokenLanguageEmbeddedObject {
+        let obj = SpokenLanguageEmbeddedObject()
+        obj.englishName = englishName
+        obj.iso639_1 = iso639_1
+        obj.name = name
+        return obj
     }
 }

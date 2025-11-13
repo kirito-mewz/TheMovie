@@ -5,7 +5,7 @@
 //  Created by Kiyotaka Kirito on 12/11/2025.
 //
 
-import Foundation
+import RealmSwift
 
 // MARK: - ActorResponse
 struct ActorResponse: Codable {
@@ -38,5 +38,22 @@ struct Actor: Codable {
         case name
         case popularity
         case profilePath = "profile_path"
+    }
+    
+    func convertToActorObject(pageNo: Int) -> ActorObject {
+        let obj = ActorObject()
+        
+        let movieObjs = List<MovieObject>()
+        movies?.map { $0.convertToMovieObj(type: .others) }.forEach { movieObjs.append($0) }
+        
+        obj.gender = gender
+        obj.id = id ?? 0
+        obj.movies = movieObjs
+        obj.role = role
+        obj.name = name
+        obj.popularity = popularity
+        obj.profilePath = profilePath
+        obj.pageNo = pageNo
+        return obj
     }
 }

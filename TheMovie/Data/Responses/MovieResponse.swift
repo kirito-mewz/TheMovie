@@ -69,6 +69,30 @@ struct Movie: Codable, Hashable {
         }
         return releaseDate ?? ""
     }
+    
+    func convertToMovieObj(type: MovieDisplayType, pageNo: Int = 1) -> MovieObject {
+        let obj = MovieObject()
+        obj.adult = adult
+        obj.backdropPath = backdropPath
+        obj.genreIds = genreIds?.map { String($0) }.joined(separator: ",") ?? ""
+        obj.id = id
+        obj.originalLanguage = originalLanguage
+        obj.originalTitle = originalTitle
+        obj.overview = overview
+        obj.popularity = popularity
+        obj.posterPath = posterPath
+        obj.releaseDate = releaseDate
+        obj.name = name
+        obj.title = title
+        obj.video = video
+        obj.voteAverage = voteAverage
+        obj.voteCount = voteCount
+        obj.mediaType = mediaType
+        obj.displayType = type
+        obj.pageNo = pageNo
+        return obj
+    }
+    
 }
 
 // MARK: - MovieGenres
@@ -83,6 +107,13 @@ struct Genre: Codable {
     
     func convertToGenreVO() -> GenreVO {
         GenreVO(id: id ?? 0, genreName: name ?? "", isSelected: false)
+    }
+    
+    func convertToGenreObject() -> GenreObject {
+        let obj = GenreObject()
+        obj.id = id ?? 0
+        obj.name = name ?? ""
+        return obj
     }
 }
 
