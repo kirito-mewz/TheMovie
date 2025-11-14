@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class MainViewController: UIViewController {
     
@@ -27,6 +28,12 @@ class MainViewController: UIViewController {
     let genreModel: GenreModel = GenreModelImpl.shared
     let actorModel: ActorModel = ActorModelImpl.shared
     
+    let rxMovieModel: RxMovieModel = RxMovieModelImpl.shared
+    let rxGenreModel: RxGenreModel = RxGenreModelImpl.shared
+    let rxActorModel: RxActorModel = RxActorModelImpl.shared
+    
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +47,8 @@ class MainViewController: UIViewController {
             movieTableView.register(UINib(nibName: String(describing: $0), bundle: nil), forCellReuseIdentifier: String(describing: $0))
         }
         
-        loadData()
+        // loadData()
+        rxLoadData()
     }
 
     @IBAction func onSearchTapped(_ sender: Any) {
@@ -48,7 +56,7 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    public enum Section: Int, Hashable {
+    public enum Section: Int, CaseIterable {
         case sliderMovies = 0
         case popularMovies = 1
         case popularSeries = 2
@@ -65,10 +73,11 @@ class MainViewController: UIViewController {
     
 }
 
+// MARK: - Delegates
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return Section.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -140,73 +149,133 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+// MARK: - Data
 extension MainViewController {
     
-    func loadData() {
+//    func loadData() {
+//        
+//        // Fetch slider movies
+//        movieModel.getSliderMovies(pageNo: nil) { [weak self] result in
+//            do {
+//                self?.sliderMovies = try result.get().results
+//                self?.updateUI(at: .sliderMovies)
+//            } catch {
+//                print("[Error: while fetching slider movies]", error)
+//            }
+//        }
+//        
+//        // Fetch popular movies
+//        movieModel.getPopularMovies(pageNo: nil){ [weak self] result in
+//            do {
+//                self?.popularMovies = try result.get().results
+//                self?.updateUI(at: .popularMovies)
+//            } catch {
+//                print("[Error: while fetching popular movies]", error)
+//            }
+//        }
+//        
+//        // Fetch popular series
+//        movieModel.getPopularSeries(pageNo: nil) { [weak self] result in
+//            do {
+//                self?.popularSeries = try result.get().results
+//                self?.updateUI(at: .popularSeries)
+//            } catch {
+//                print("[Error: while fetching popular series]", error)
+//            }
+//        }
+//        
+//        // Fetch genres
+//        genreModel.getGenres { [weak self] result in
+//            do {
+//                let genres = try result.get()
+//                self?.movieGenres = genres.map { $0.convertToGenreVO() }
+//                self?.updateUI(at: .movieWihtGenre)
+//            } catch {
+//                print("[Error: while fetching genres]", error)
+//            }
+//        }
+//        
+//        // Fetch showcase movies
+//        movieModel.getShowcaseMovies(pageNo: nil) { [weak self] result in
+//            do {
+//                self?.showcaseResponse = try result.get()
+//                self?.showcaseMovies = self?.showcaseResponse?.results
+//                self?.updateUI(at: .showcase)
+//            } catch {
+//                print("[Error: while fetching showcase movies]", error)
+//            }
+//        }
+//        
+//        // Fetch actor
+//        actorModel.getActors(pageNo: nil) { [weak self] result in
+//            do {
+//                self?.actorResponse = try result.get()
+//                self?.actors = self?.actorResponse?.results
+//                self?.updateUI(at: .actor)
+//            } catch {
+//                print("[Error: while fetching actor]", error)
+//            }
+//        }
+//        
+//    }
+    
+    func rxLoadData() {
         
-        // Fetch slider movies
-        movieModel.getSliderMovies(pageNo: nil) { [weak self] result in
-            do {
-                self?.sliderMovies = try result.get().results
+        rxMovieModel.getSliderMovies(pageNo: nil)
+            .subscribe { [weak self] response in
+                self?.sliderMovies = response.results
                 self?.updateUI(at: .sliderMovies)
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching slider movies]", error)
             }
-        }
+            .disposed(by: disposeBag)
         
-        // Fetch popular movies
-        movieModel.getPopularMovies(pageNo: nil){ [weak self] result in
-            do {
-                self?.popularMovies = try result.get().results
+        rxMovieModel.getPopularMovies(pageNo: nil)
+            .subscribe { [weak self] response in
+                self?.popularMovies = response.results
                 self?.updateUI(at: .popularMovies)
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching popular movies]", error)
             }
-        }
+            .disposed(by: disposeBag)
         
-        // Fetch popular series
-        movieModel.getPopularSeries(pageNo: nil) { [weak self] result in
-            do {
-                self?.popularSeries = try result.get().results
+        rxMovieModel.getPopularSeries(pageNo: nil)
+            .subscribe { [weak self] response in
+                self?.popularSeries = response.results
                 self?.updateUI(at: .popularSeries)
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching popular series]", error)
             }
-        }
+            .disposed(by: disposeBag)
         
-        // Fetch genres
-        genreModel.getGenres { [weak self] result in
-            do {
-                let genres = try result.get()
+        rxGenreModel.getGenres()
+            .subscribe { [weak self] genres in
                 self?.movieGenres = genres.map { $0.convertToGenreVO() }
                 self?.updateUI(at: .movieWihtGenre)
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching genres]", error)
             }
-        }
+            .disposed(by: disposeBag)
         
-        // Fetch showcase movies
-        movieModel.getShowcaseMovies(pageNo: nil) { [weak self] result in
-            do {
-                self?.showcaseResponse = try result.get()
-                self?.showcaseMovies = self?.showcaseResponse?.results
+        rxMovieModel.getShowcaseMovies(pageNo: nil)
+            .subscribe { [weak self] response in
+                self?.showcaseResponse = response
+                self?.showcaseMovies = response.results
                 self?.updateUI(at: .showcase)
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching showcase movies]", error)
             }
-        }
+            .disposed(by: disposeBag)
         
-        // Fetch actor
-        actorModel.getActors(pageNo: nil) { [weak self] result in
-            do {
-                self?.actorResponse = try result.get()
-                self?.actors = self?.actorResponse?.results
+        rxActorModel.getActors(pageNo: nil)
+            .subscribe { [weak self] response in
+                self?.actorResponse = response
+                self?.actors = response.results
                 self?.updateUI(at: .actor)
-            } catch {
-                print("[Error: while fetching actor]", error)
+            } onError: { error in
+                print("[Error: while fetching actors]", error)
             }
-        }
-        
+            .disposed(by: disposeBag)
     }
     
 }
@@ -214,3 +283,4 @@ extension MainViewController {
 extension MainViewController: MovieItemDelegate, ActorItemDelegate {
     func onFavouriteTapped(isFavourite: Bool) { }
 }
+

@@ -126,7 +126,7 @@ class MovieDetailViewController: UIViewController, Storyboarded {
     
 }
 
-
+// MARK: - Delegates
 extension MovieDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -186,6 +186,7 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
     
 }
 
+// MARK: - Data
 extension MovieDetailViewController {
     
     func loadData() {

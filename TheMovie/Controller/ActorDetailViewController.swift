@@ -64,6 +64,7 @@ class ActorDetailViewController: UIViewController, Storyboarded {
 
 }
 
+// MARK: - Delegates
 extension ActorDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -90,6 +91,7 @@ extension ActorDetailViewController: UICollectionViewDataSource, UICollectionVie
     
 }
 
+// MARK: - Data
 extension ActorDetailViewController {
     
     func loadData() {

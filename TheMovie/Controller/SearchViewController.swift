@@ -49,6 +49,7 @@ class SearchViewController: UIViewController, Storyboarded {
     
 }
 
+// MARK: - Delegates
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -94,6 +95,30 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
 }
 
+// MARK: - Data
+extension SearchViewController {
+    
+    func searchMovies(pageNo: Int = 1) {
+        movieModel.getSearchMovies(query: queryText, pageNo: pageNo) { [weak self] result in
+            do {
+                let response = try result.get()
+                self?.totalPages = response.totalPages ?? 1
+                
+                if pageNo == 1 {
+                    self?.movies = response.results ?? []
+                } else {
+                    self?.movies.append(contentsOf: response.results ?? [])
+                }
+                self?.movieCollectionView.reloadData()
+                
+            } catch {
+                print("[Error while searching movie]", error)
+            }
+        }
+    }
+    
+}
+
 extension SearchViewController: UISearchBarDelegate, UISearchControllerDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -117,29 +142,6 @@ extension SearchViewController: UISearchBarDelegate, UISearchControllerDelegate 
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
-    }
-    
-}
-
-extension SearchViewController {
-    
-    func searchMovies(pageNo: Int = 1) {
-        movieModel.getSearchMovies(query: queryText, pageNo: pageNo) { [weak self] result in
-            do {
-                let response = try result.get()
-                self?.totalPages = response.totalPages ?? 1
-                
-                if pageNo == 1 {
-                    self?.movies = response.results ?? []
-                } else {
-                    self?.movies.append(contentsOf: response.results ?? [])
-                }
-                self?.movieCollectionView.reloadData()
-                
-            } catch {
-                print("[Error while searching movie]", error)
-            }
-        }
     }
     
 }

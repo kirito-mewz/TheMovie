@@ -13,4 +13,9 @@ target 'TheMovie' do
 
   pod 'RealmSwift'
 
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxAlamofire'
+  pod 'RxRealm'
+
 end

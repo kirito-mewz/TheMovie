@@ -58,6 +58,7 @@ class ListViewController: UIViewController, Storyboarded {
     
 }
 
+// MARK: - Delegates
 extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -113,6 +114,7 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 }
 
+// MARK: - Data
 extension ListViewController {
     
     func loadNewPages(pageNo: Int) {

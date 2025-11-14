@@ -5,9 +5,9 @@
 //  Created by Kiyotaka Kirito on 12/11/2025.
 //
 
-import Foundation
+import Alamofire
 
-enum MDBEndPoint {
+enum MDBEndPoint: URLConvertible, URLRequestConvertible {
     
     case sliderMovies(pageNo: Int = 1)
     case popular(pageNo: Int = 1, type: MovieType)
@@ -23,6 +23,16 @@ enum MDBEndPoint {
     
     case actorDetail(id: Int)
     case actorMovies(id: Int)
+    
+    func asURL() throws -> URL {
+        return URL(string: urlString)!
+    }
+    
+    func asURLRequest() throws -> URLRequest {
+        var request = URLRequest(url: try asURL())
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        return request
+    }
     
     var urlString: String {
         get {
