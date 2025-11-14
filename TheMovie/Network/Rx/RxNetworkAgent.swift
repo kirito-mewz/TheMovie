@@ -14,7 +14,7 @@ protocol RxNetworkAgent {
     func fetchGenres(withEndpoint endpoint: MDBEndPoint) -> Observable<[Genre]>
     func fetchShowcaseMovies(withEndpoint endpoint: MDBEndPoint) -> Observable<MovieResponse>
     func fetchActors(withEndpoint endpoint: MDBEndPoint) -> Observable<ActorResponse>
-//    func fetchSearchMovies(with query: String, page: Int) -> Observable<MovieResponse>
+    func fetchSearchMovies(with query: String, page: Int) -> Observable<MovieResponse>
     
     // MARK: - Movie Detail
     func fetchMovieDetail(movieId id: Int, type: MovieType) -> Observable<MovieDetailResponse>

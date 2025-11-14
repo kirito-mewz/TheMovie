@@ -31,11 +31,11 @@ final class RxNetworkAgentImpl: RxNetworkAgent {
         RxAlamofire.requestDecodable(endpoint).flatMap { Observable.just($0.1) }
     }
     
-//    func fetchSearchMovies(with query: String, page: Int) -> RxSwift.Observable<MovieResponse> {
-//        let whiteSpaceReplaceStr: String = query.replacingOccurrences(of: " " , with: "+")
-//        return RxAlamofire.requestDecodable(MDBEndPoint.searchMovies(query: whiteSpaceReplaceStr))
-//            .flatMap { Observable.just($0.1) }
-//    }
+    func fetchSearchMovies(with query: String, page: Int) -> RxSwift.Observable<MovieResponse> {
+        let whiteSpaceReplaceStr: String = query.replacingOccurrences(of: " " , with: "+")
+        return RxAlamofire.requestDecodable(MDBEndPoint.searchMovies(query: whiteSpaceReplaceStr))
+            .flatMap { Observable.just($0.1) }
+    }
     
     // MARK: - Movie Detail
     func fetchMovieDetail(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieDetailResponse> {

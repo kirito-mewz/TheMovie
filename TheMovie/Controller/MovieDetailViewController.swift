@@ -234,7 +234,6 @@ extension MovieDetailViewController {
 //            }
 //        }
         
-
         rxMovieModel.getMovieTrailer(movieId: movieId, type: self.type)
             .subscribe { [weak self] response in
                 let vc = YoutubePlayerViewController.instantiate()

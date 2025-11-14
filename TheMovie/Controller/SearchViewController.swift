@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SearchViewController: UIViewController, Storyboarded {
     
@@ -21,6 +22,10 @@ class SearchViewController: UIViewController, Storyboarded {
     
     var movies: [Movie] = []
     var movieModel: MovieModel = MovieModelImpl.shared
+    
+    let rxMovieModel: RxMovieModel = RxMovieModelImpl.shared
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +94,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         let lastRow = indexPath.row == movies.count - 1
         if lastRow && currentPage <= totalPages {
             currentPage += 1
-            searchMovies()
+            rxSearchMovies()
         }
     }
     
@@ -98,10 +103,28 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 // MARK: - Data
 extension SearchViewController {
     
-    func searchMovies(pageNo: Int = 1) {
-        movieModel.getSearchMovies(query: queryText, pageNo: pageNo) { [weak self] result in
-            do {
-                let response = try result.get()
+//    func searchMovies(pageNo: Int = 1) {
+//        movieModel.getSearchMovies(query: queryText, pageNo: pageNo) { [weak self] result in
+//            do {
+//                let response = try result.get()
+//                self?.totalPages = response.totalPages ?? 1
+//                
+//                if pageNo == 1 {
+//                    self?.movies = response.results ?? []
+//                } else {
+//                    self?.movies.append(contentsOf: response.results ?? [])
+//                }
+//                self?.movieCollectionView.reloadData()
+//                
+//            } catch {
+//                print("[Error while searching movie]", error)
+//            }
+//        }
+//    }
+    
+    func rxSearchMovies(pageNo: Int = 1) {
+        rxMovieModel.getSearchMovies(query: queryText, pageNo: pageNo)
+            .subscribe { [weak self] response in
                 self?.totalPages = response.totalPages ?? 1
                 
                 if pageNo == 1 {
@@ -109,12 +132,13 @@ extension SearchViewController {
                 } else {
                     self?.movies.append(contentsOf: response.results ?? [])
                 }
-                self?.movieCollectionView.reloadData()
                 
-            } catch {
-                print("[Error while searching movie]", error)
+                self?.movieCollectionView.reloadData()
+            } onError: { error in
+                print("\(#function) \(error)")
             }
-        }
+            .disposed(by: disposeBag)
+              
     }
     
 }
@@ -125,7 +149,7 @@ extension SearchViewController: UISearchBarDelegate, UISearchControllerDelegate 
         if let text = searchBar.text, !text.isEmpty {
             queryText = text
             currentPage = 1
-            searchMovies(pageNo: currentPage)
+            rxSearchMovies(pageNo: currentPage)
         }
     }
     

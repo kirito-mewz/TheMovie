@@ -13,7 +13,7 @@ protocol RxMovieModel {
     func getPopularMovies(pageNo: Int?) -> Observable<MovieResponse>
     func getPopularSeries(pageNo: Int?) -> Observable<MovieResponse>
     func getShowcaseMovies(pageNo: Int?) -> Observable<MovieResponse>
-//    func getSearchMovies(query: String, pageNo: Int?) -> Observable<MovieResponse>
+    func getSearchMovies(query: String, pageNo: Int?) -> Observable<MovieResponse>
     
     func getMovieDetail(movieId id: Int, type: MovieType) -> Observable<MovieDetailResponse?>
     func getMovieTrailer(movieId id: Int, type: MovieType) -> Observable<Trailer>
@@ -89,9 +89,9 @@ final class RxMovieModelImpl: BaseModel, RxMovieModel {
             }
     }
     
-//    func getSearchMovies(query: String, pageNo: Int?) -> RxSwift.Observable<MovieResponse> {
-//        
-//    }
+    func getSearchMovies(query: String, pageNo: Int?) -> RxSwift.Observable<MovieResponse> {
+        rxNetworkAgent.fetchSearchMovies(with: query, page: pageNo ?? 1)
+    }
     
     func getMovieDetail(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieDetailResponse?> {
         rxNetworkAgent.fetchMovieDetail(movieId: id, type: type)
