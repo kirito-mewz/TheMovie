@@ -10,8 +10,8 @@ import RxSwift
 protocol RxActorModel {
     
     func getActors(pageNo: Int?) -> Observable<ActorResponse>
-//    func getActorDetail(actorId id: Int) -> Observable<ActorDetailResponse>
-//    func getActorMovies(actorId id: Int) -> Observable<ActorCreditResponse>
+    func getActorDetail(actorId id: Int) -> Observable<ActorDetailResponse>
+    func getActorMovies(actorId id: Int) -> Observable<ActorCreditResponse>
     
 }
 
@@ -38,12 +38,20 @@ final class RxActorModelImpl: BaseModel, RxActorModel {
             }
     }
     
-//    func getActorDetail(actorId id: Int) -> RxSwift.Observable<ActorDetailResponse> {
-//        <#code#>
-//    }
-//    
-//    func getActorMovies(actorId id: Int) -> RxSwift.Observable<ActorCreditResponse> {
-//        <#code#>
-//    }
+    func getActorDetail(actorId id: Int) -> RxSwift.Observable<ActorDetailResponse> {
+        rxNetworkAgent.fetchActorDetail(actorId: id)
+            .do { [weak self] response in
+                self?.rxRepo.saveActorDetail(actorId: id, detail: response)
+            } onError: { error in
+                print("\(#function) \(error)")
+            }
+            .flatMap { response in
+                self.rxRepo.getActorDetail(actorId: response.id ?? -1)
+            }
+    }
+    
+    func getActorMovies(actorId id: Int) -> RxSwift.Observable<ActorCreditResponse> {
+        rxNetworkAgent.fetchActorMovies(actorId: id)
+    }
     
 }

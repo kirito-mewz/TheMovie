@@ -21,6 +21,8 @@ struct ActorDetailResponse: Codable {
     let adult: Bool?
     let imdbId: String?
     let homepage: String?
+    
+    static let emptyObj = ActorDetailResponse(birthday: nil, knownForDepartment: nil, deathday: nil, id: nil, name: nil, alsoKnownAs: nil, gender: nil, biography: nil, popularity: nil, placeOfBirth: nil, profilePath: nil, adult: nil, imdbId: nil, homepage: nil)
 
     enum CodingKeys: String, CodingKey {
         case birthday

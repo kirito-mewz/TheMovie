@@ -14,6 +14,9 @@ protocol RxMovieRepository {
     func saveMovies(type: MovieDisplayType, page: Int, movies: [Movie])
     func getMovies(type: MovieDisplayType, page: Int) -> Observable<[Movie]>
     
+    func saveMovieDetail(movieId id: Int, detail: MovieDetailResponse)
+    func getMovieDetail(movieId id: Int) -> Observable<MovieDetailResponse?>
+    
 }
 
 final class RxMovieRepositoryImpl: BaseRepository, RxMovieRepository {
@@ -36,9 +39,31 @@ final class RxMovieRepositoryImpl: BaseRepository, RxMovieRepository {
         let collection: Results<MovieObject> = realm.objects(MovieObject.self).filter(predicate)
         
         return Observable.collection(from: collection)
-            .flatMap { objects -> Observable<[Movie]> in
-                Observable.of(objects.map { $0.convertToMovie()} )
+            .map { objects in
+                objects.map { $0.convertToMovie() }
             }
     }
     
+    func saveMovieDetail(movieId id: Int, detail: MovieDetailResponse) {
+        if let object = realm.object(ofType: MovieObject.self, forPrimaryKey: id) {
+            try? realm.write {
+                object.detail = detail.convertToMovieDetailEmbeddedObject()
+            }
+        } else {
+            let obj = MovieObject()
+            obj.id = detail.id ?? -1
+            obj.detail = detail.convertToMovieDetailEmbeddedObject()
+            
+            try? realm.write {
+                realm.add(obj.detail!.genres, update: .modified)
+                realm.add(obj, update: .modified)
+            }
+        }
+    }
+    
+    func getMovieDetail(movieId id: Int) -> Observable<MovieDetailResponse?> {
+        let object = realm.object(ofType: MovieObject.self, forPrimaryKey: id)
+        return Observable.of(object?.detail?.convertToMovieDetail())
+    }
+
 }

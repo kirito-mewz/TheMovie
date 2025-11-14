@@ -20,15 +20,16 @@ final class RxGenreRepositoryImpl: BaseRepository, RxGenreRepository {
     
     static let shared: RxGenreRepository = RxGenreRepositoryImpl()
     
+    private var disposeBag = DisposeBag()
+    
     override init() { }
     
     func saveGenres(genres: [Genre]) {
-        do {
-            let obj = genres.map { $0.convertToGenreObject() }
-            try realm.write { realm.add(obj, update: .modified) }
-        } catch {
-            print("\(#function) \(error)")
-        }
+        let obj = genres.map { $0.convertToGenreObject() }
+        Observable.from(obj)
+            .subscribe(realm.rx.add(update: .modified))
+            .disposed(by: disposeBag)
+        
     }
     
     func getGenres() -> RxSwift.Observable<[Genre]> {

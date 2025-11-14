@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import RxSwift
 
 class ActorDetailViewController: UIViewController, Storyboarded {
     
@@ -31,10 +32,16 @@ class ActorDetailViewController: UIViewController, Storyboarded {
     
     let actorModel: ActorModel = ActorModelImpl.shared
     
+    let rxActorModel: RxActorModel = RxActorModelImpl.shared
+    
+    let disposeBag = DisposeBag()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadData()
+//        loadData()
+        rxLoadData()
     }
     
     func bindData(with detail: ActorDetailResponse?) {
@@ -94,27 +101,49 @@ extension ActorDetailViewController: UICollectionViewDataSource, UICollectionVie
 // MARK: - Data
 extension ActorDetailViewController {
     
-    func loadData() {
-        actorModel.getActorDetail(actorId: actorId) { [weak self] result in
-            do {
-                let response = try result.get()
+//    func loadData() {
+//        actorModel.getActorDetail(actorId: actorId) { [weak self] result in
+//            do {
+//                let response = try result.get()
+//                self?.actorDetail = response
+//                self?.bindData(with: response)
+//                self?.navigationItem.title = response.name
+//            } catch {
+//                print("[Error: while fetching actor detail]", error)
+//            }
+//        }
+//        
+//        actorModel.getActorMovies(actorId: actorId) { [weak self] result in
+//            do {
+//                let response = try result.get()
+//                response.movies?.forEach { self?.movies.append($0.convertToMovie()) }
+//                self?.movieCollectionView.reloadData()
+//            } catch {
+//                print("[Error: while fetching actor movies]", error)
+//            }
+//        }
+//    }
+    
+    func rxLoadData() {
+        rxActorModel.getActorDetail(actorId: actorId)
+            .subscribe { [weak self] response in
                 self?.actorDetail = response
                 self?.bindData(with: response)
-                self?.navigationItem.title = response.name
-            } catch {
-                print("[Error: while fetching actor detail]", error)
+                self?.navigationItem.title = self?.actorDetail?.name
+            } onError: { error in
+                print("\(#function) \(error)")
             }
-        }
+            .disposed(by: disposeBag)
         
-        actorModel.getActorMovies(actorId: actorId) { [weak self] result in
-            do {
-                let response = try result.get()
-                response.movies?.forEach { self?.movies.append($0.convertToMovie()) }
+        rxActorModel.getActorMovies(actorId: actorId)
+            .compactMap { $0.movies }
+            .subscribe { [weak self] movies in
+                movies.forEach { self?.movies.append($0.convertToMovie()) }
                 self?.movieCollectionView.reloadData()
-            } catch {
-                print("[Error: while fetching actor movies]", error)
+            } onError: { error in
+                print("\(#function) \(error)")
             }
-        }
+            .disposed(by: disposeBag)
     }
     
 }

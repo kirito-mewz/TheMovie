@@ -16,14 +16,14 @@ protocol RxNetworkAgent {
     func fetchActors(withEndpoint endpoint: MDBEndPoint) -> Observable<ActorResponse>
 //    func fetchSearchMovies(with query: String, page: Int) -> Observable<MovieResponse>
     
-//    // MARK: - Movie Detail
-//    func fetchMovieDetail(movieId id: Int, type: MovieType) -> Observable<MovieDetailResponse>
-//    func fetchMovieTrailer(movieId id: Int, type: MovieType) -> Observable<Trailer>
-//    func fetchMovieActors(movidId id: Int, type: MovieType) -> Observable<[Actor]>
-//    func fetchSimilarMovies(movieId id: Int, type: MovieType) -> Observable<MovieResponse>
-//  
-//    // MARK: - Actor Detail
-//    func fetchActorDetail(actorId id: Int) -> Observable<ActorDetailResponse>
-//    func fetchActorMovies(actorId id: Int) -> Observable<ActorCreditResponse>
+    // MARK: - Movie Detail
+    func fetchMovieDetail(movieId id: Int, type: MovieType) -> Observable<MovieDetailResponse>
+    func fetchMovieTrailer(movieId id: Int, type: MovieType) -> Observable<Trailer>
+    func fetchMovieActors(movidId id: Int, type: MovieType) -> Observable<[Actor]>
+    func fetchSimilarMovies(movieId id: Int, type: MovieType) -> Observable<MovieResponse>
+  
+    // MARK: - Actor Detail
+    func fetchActorDetail(actorId id: Int) -> Observable<ActorDetailResponse>
+    func fetchActorMovies(actorId id: Int) -> Observable<ActorCreditResponse>
     
 }

@@ -121,7 +121,7 @@ class MovieDetailEmbeddedObject: EmbeddedObject {
 }
 
 class MovieTrailerEmbeddedObject: EmbeddedObject {
-    @Persisted var id: String?
+    @Persisted var id: Int?
     @Persisted var iso639_1: String?
     @Persisted var iso3166_1: String?
     @Persisted var keyPath: String?

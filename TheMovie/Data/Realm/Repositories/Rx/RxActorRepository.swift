@@ -14,6 +14,8 @@ protocol RxActorRepository {
     func saveActors(page: Int, actors: [Actor])
     func getActors(page: Int) -> Observable<[Actor]>
     
+    func saveActorDetail(actorId id: Int, detail: ActorDetailResponse)
+    func getActorDetail(actorId id: Int) -> Observable<ActorDetailResponse>
 }
 
 final class RxActorRepositoryImpl: BaseRepository, RxActorRepository {
@@ -41,5 +43,26 @@ final class RxActorRepositoryImpl: BaseRepository, RxActorRepository {
             }
     }
    
+    func saveActorDetail(actorId id: Int, detail: ActorDetailResponse) {
+        if let object = realm.object(ofType: ActorObject.self, forPrimaryKey: id) {
+            try? realm.write {
+                object.detail = detail.convertToActorDetailEmbeddedObj()
+            }
+        } else {
+            let obj = ActorObject()
+            obj.id = detail.id ?? -1
+            obj.detail = detail.convertToActorDetailEmbeddedObj()
+            
+            try? realm.write {
+                realm.add(obj, update: .modified)
+            }
+        }
+    }
+    
+    func getActorDetail(actorId id: Int) -> RxSwift.Observable<ActorDetailResponse> {
+        let object = realm.object(ofType: ActorObject.self, forPrimaryKey: id)!
+        return Observable.of((object.detail?.convertToActorDetail())!)
+    }
+    
     
 }

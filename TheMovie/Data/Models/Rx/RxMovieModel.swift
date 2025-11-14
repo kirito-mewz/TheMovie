@@ -15,6 +15,11 @@ protocol RxMovieModel {
     func getShowcaseMovies(pageNo: Int?) -> Observable<MovieResponse>
 //    func getSearchMovies(query: String, pageNo: Int?) -> Observable<MovieResponse>
     
+    func getMovieDetail(movieId id: Int, type: MovieType) -> Observable<MovieDetailResponse?>
+    func getMovieTrailer(movieId id: Int, type: MovieType) -> Observable<Trailer>
+    func getMovieActors(movieId id: Int, type: MovieType) -> Observable<[Actor]>
+    func getSimilarMovies(movieId id: Int, type: MovieType) -> Observable<MovieResponse>
+    
 }
 
 final class RxMovieModelImpl: BaseModel, RxMovieModel {
@@ -88,5 +93,34 @@ final class RxMovieModelImpl: BaseModel, RxMovieModel {
 //        
 //    }
     
+    func getMovieDetail(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieDetailResponse?> {
+        rxNetworkAgent.fetchMovieDetail(movieId: id, type: type)
+            .do { [weak self] response in
+                self?.rxRepo.saveMovieDetail(movieId: id, detail: response)
+            } onError: { error in
+                print("\(#function) \(error)")
+            }
+            .flatMap { response -> Observable<MovieDetailResponse?> in
+                self.rxRepo.getMovieDetail(movieId: response.id ?? -1)
+            }
+    }
     
+    func getMovieTrailer(movieId id: Int, type: MovieType) -> RxSwift.Observable<Trailer> {
+        rxNetworkAgent.fetchMovieTrailer(movieId: id, type: type)
+    }
+    
+    func getMovieActors(movieId id: Int, type: MovieType) -> RxSwift.Observable<[Actor]> {
+        rxNetworkAgent.fetchMovieActors(movidId: id, type: type)
+    }
+    
+    func getSimilarMovies(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieResponse> {
+        rxNetworkAgent.fetchSimilarMovies(movieId: id, type: type)
+            .do { [weak self] response in
+                self?.rxRepo.saveMovies(type: .similarMoves, page: 1, movies: response.results ?? [])
+            } onError: { error in
+                print("\(#function) \(error)")
+            }
+    }
+    
+
 }

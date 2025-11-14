@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import RxSwift
 
 class MovieDetailViewController: UIViewController, Storyboarded {
     
@@ -42,6 +43,10 @@ class MovieDetailViewController: UIViewController, Storyboarded {
     
     let movieModel: MovieModel = MovieModelImpl.shared
     
+    let rxMovieModel: RxMovieModel = RxMovieModelImpl.shared
+    
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,6 +54,7 @@ class MovieDetailViewController: UIViewController, Storyboarded {
         configureButton()
         
         loadData()
+        
     }
     
     private func setupGradientLayer() {
@@ -190,53 +196,95 @@ extension MovieDetailViewController: UICollectionViewDataSource, UICollectionVie
 extension MovieDetailViewController {
     
     func loadData() {
-        movieModel.getMovieDetail(movieId: movieId, type: self.type) { [weak self] result in
-            do {
-                let response = try result.get()
+//        movieModel.getMovieDetail(movieId: movieId, type: self.type) { [weak self] result in
+//            do {
+//                let response = try result.get()
+//                self?.movieDetail = response
+//                self?.bindData(with: response)
+//                self?.navigationItem.title = response.title ?? response.name
+//            } catch {
+//                print("[Error: while fetching movie detail]", error)
+//            }
+//        }
+        
+        rxMovieModel.getMovieDetail(movieId: movieId, type: self.type)
+            .compactMap { $0 }
+            .subscribe { [weak self] response in
                 self?.movieDetail = response
                 self?.bindData(with: response)
                 self?.navigationItem.title = response.title ?? response.name
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching movie detail]", error)
             }
-        }
+            .disposed(by: disposeBag)
+        
         fetchMovieActors()
         fetchSimilarMovies()
     }
     
     func playTrailer() {
-        movieModel.getMovieTrailer(movieId: movieId, type: self.type) { [weak self] result in
-            do {
-                let response = try result.get()
+//        movieModel.getMovieTrailer(movieId: movieId, type: self.type) { [weak self] result in
+//            do {
+//                let response = try result.get()
+//                let vc = YoutubePlayerViewController.instantiate()
+//                vc.keyPath = response.keyPath
+//                self?.navigationController?.pushViewController(vc, animated: true)
+//            } catch {
+//                print("[Error: while fetching movie trailer]", error)
+//            }
+//        }
+        
+
+        rxMovieModel.getMovieTrailer(movieId: movieId, type: self.type)
+            .subscribe { [weak self] response in
                 let vc = YoutubePlayerViewController.instantiate()
                 vc.keyPath = response.keyPath
                 self?.navigationController?.pushViewController(vc, animated: true)
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching movie trailer]", error)
             }
-        }
+            .disposed(by: disposeBag)
     }
     
     func fetchMovieActors() {
-        movieModel.getMovieActors(movieId: movieId, type: self.type) { [weak self] result in
-            do {
-                self?.movieActors = try result.get()
+//        movieModel.getMovieActors(movieId: movieId, type: self.type) { [weak self] result in
+//            do {
+//                self?.movieActors = try result.get()
+//                self?.actorCollectionView.reloadData()
+//            } catch {
+//                print("[Error: while fetching movie actors]", error)
+//            }
+//        }
+        
+        rxMovieModel.getMovieActors(movieId: movieId, type: self.type)
+            .subscribe { [weak self] response in
+                self?.movieActors = response
                 self?.actorCollectionView.reloadData()
-            } catch {
+            } onError: { error in
                 print("[Error: while fetching movie actors]", error)
             }
-        }
+            .disposed(by: disposeBag)
+        
     }
     
     func fetchSimilarMovies() {
-        movieModel.getSimilarMovies(movieId: movieId, type: self.type) { [weak self] result in
-            do {
-                self?.similarMovies = try result.get().results
+//        movieModel.getSimilarMovies(movieId: movieId, type: self.type) { [weak self] result in
+//            do {
+//                self?.similarMovies = try result.get().results
+//                self?.movieCollectionView.reloadData()
+//            } catch {
+//                print("[Error: while fetching similar movies ]", error)
+//            }
+//        }
+        
+        rxMovieModel.getSimilarMovies(movieId: movieId, type: self.type)
+            .subscribe { [weak self] response in
+                self?.similarMovies = response.results
                 self?.movieCollectionView.reloadData()
-            } catch {
-                print("[Error: while fetching similar movies ]", error)
+            } onError: { error in
+                print("[Error: while fetching similar movie]", error)
             }
-        }
+            .disposed(by: disposeBag)
     }
     
 }

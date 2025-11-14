@@ -37,31 +37,43 @@ final class RxNetworkAgentImpl: RxNetworkAgent {
 //            .flatMap { Observable.just($0.1) }
 //    }
     
-//    // MARK: - Movie Detail
-//    func fetchMovieDetail(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieDetailResponse> {
-//        <#code#>
-//    }
-//    
-//    func fetchMovieTrailer(movieId id: Int, type: MovieType) -> RxSwift.Observable<Trailer> {
-//        <#code#>
-//    }
-//    
-//    func fetchMovieActors(movidId id: Int, type: MovieType) -> RxSwift.Observable<[Actor]> {
-//        <#code#>
-//    }
-//    
-//    func fetchSimilarMovies(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieResponse> {
-//        <#code#>
-//    }
-//    
-//    // MARK: - Actor Detail
-//    func fetchActorDetail(actorId id: Int) -> RxSwift.Observable<ActorDetailResponse> {
-//        <#code#>
-//    }
-//    
-//    func fetchActorMovies(actorId id: Int) -> RxSwift.Observable<ActorCreditResponse> {
-//        <#code#>
-//    }
-//    
+    // MARK: - Movie Detail
+    func fetchMovieDetail(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieDetailResponse> {
+        RxAlamofire.requestDecodable(MDBEndPoint.movieDetail(id: id, type: type)).flatMap { Observable.just($0.1) }
+    }
+    
+    func fetchMovieTrailer(movieId id: Int, type: MovieType) -> Observable<Trailer> {
+        RxAlamofire.requestDecodable(MDBEndPoint.movieTrailer(id: id, type: type))
+            .map { (_, response: MovieTrailerResponse) in
+                guard let trailer = response.results?.first else {
+                    fatalError("RxAlamofire Movie Trailer Error")
+                }
+                return trailer
+            }
+    }
+    
+    func fetchMovieActors(movidId id: Int, type: MovieType) -> RxSwift.Observable<[Actor]> {
+        RxAlamofire.requestDecodable(MDBEndPoint.movieActors(id: id, type: type))
+            .map { tuple -> MovieCreditResponse in
+                return tuple.1
+            }
+            .flatMap { credit in
+                return Observable.of(credit.convertToActor() ?? [])
+            }
+    }
+    
+    func fetchSimilarMovies(movieId id: Int, type: MovieType) -> RxSwift.Observable<MovieResponse> {
+        RxAlamofire.requestDecodable(MDBEndPoint.similarMovies(id: id, type: type)).flatMap { Observable.just($0.1) }
+    }
+    
+    // MARK: - Actor Detail
+    func fetchActorDetail(actorId id: Int) -> RxSwift.Observable<ActorDetailResponse> {
+        RxAlamofire.requestDecodable(MDBEndPoint.actorDetail(id: id)).flatMap { Observable.just($0.1) }
+    }
+    
+    func fetchActorMovies(actorId id: Int) -> RxSwift.Observable<ActorCreditResponse> {
+        RxAlamofire.requestDecodable(MDBEndPoint.actorMovies(id: id)).flatMap { Observable.just($0.1) }
+    }
+    
     
 }
