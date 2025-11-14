@@ -17,5 +17,6 @@ target 'TheMovie' do
   pod 'RxCocoa'
   pod 'RxAlamofire'
   pod 'RxRealm'
+  pod 'RxDataSources'
 
 end
